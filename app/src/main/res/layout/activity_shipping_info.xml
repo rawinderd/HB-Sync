@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ShippingInfo">
+    <include
+        android:id="@+id/shipping_info_toolbar"
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize" />
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/weight_input_outer"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Weight(grams)"
+        app:layout_constraintEnd_toStartOf="@id/guideline_right95"
+        app:layout_constraintStart_toStartOf="@id/guideline_left5"
+        app:layout_constraintTop_toBottomOf="@id/shipping_info_toolbar">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/weight_input_inner"
+            android:layout_width="match_parent"
+            android:inputType="number"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/length_input_outer"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Length(cm)"
+        app:layout_constraintEnd_toStartOf="@id/guideline_right95"
+        app:layout_constraintStart_toStartOf="@id/guideline_left5"
+        app:layout_constraintTop_toBottomOf="@id/weight_input_outer">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/length_input_inner"
+            android:layout_width="match_parent"
+            android:inputType="number"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/width_input_outer"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Width(cm)"
+        app:layout_constraintEnd_toStartOf="@id/guideline_right95"
+        app:layout_constraintStart_toStartOf="@id/guideline_left5"
+        app:layout_constraintTop_toBottomOf="@id/length_input_outer">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/width_input_inner"
+            android:layout_width="match_parent"
+            android:inputType="number"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/height_input_outer"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Height(cm)"
+        app:layout_constraintEnd_toStartOf="@id/guideline_right95"
+        app:layout_constraintStart_toStartOf="@id/guideline_left5"
+        app:layout_constraintTop_toBottomOf="@id/width_input_outer">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/height_input_inner"
+            android:layout_width="match_parent"
+            android:inputType="number"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/regular_price_input_outer"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Shipping Class"
+        app:layout_constraintEnd_toStartOf="@id/guideline_right95"
+        app:layout_constraintStart_toStartOf="@id/guideline_left5"
+        app:layout_constraintTop_toBottomOf="@id/height_input_outer">
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/shipping_class_spinner"
+            android:layout_width="match_parent"
+            android:inputType="number"
+            android:layout_height="?attr/actionBarSize" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_left5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="@dimen/left_vertical_guideline" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_right95"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="@dimen/right_vertical_guideline" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_left20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="@dimen/left_20" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_left10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="@dimen/left_10" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

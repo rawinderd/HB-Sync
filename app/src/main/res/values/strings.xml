@@ -1,0 +1,53 @@
+<resources>
+    <string name="app_name">HB Sync</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string-array name="Languages">
+        <item>None</item>
+        <item>Punjabi</item>
+        <item>English</item>
+        <item>Hindi</item>
+        <item>Urdu</item>
+    </string-array>
+    <string-array name="Shipping">
+        <item>Flat40</item>
+        <item>Flat50</item>
+        <item>FreeShipping</item>
+    </string-array>
+    <string-array name="taxStatus">
+        <item>Shipping</item>
+        <item>None</item>
+    </string-array>
+    <string-array name="orderStatus">
+        <item>Pending</item>
+        <item>Shipped</item>
+        <item>Partially Shipped</item>
+        <item>Failed</item>
+        <item>Completed</item>
+    </string-array>
+    <string-array name="taxClass">
+        <item>Standard Rate</item>
+        <item>Reduced Rate</item>
+        <item>Zero Rate</item>
+    </string-array>
+    <string-array name="stockStatusArray">
+        <item>instock</item>
+        <item>outofstock</item>
+        <item>onbackorder</item>
+    </string-array>
+    <string-array name="statusSpinnerArray">
+        <item>Pending</item>
+        <item>Resubmission</item>
+        <item>Approved</item>
+        <item>Rejected</item>
+        <item>Out of Stock</item>
+        <item>Stopped</item>
+    </string-array>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+</resources>

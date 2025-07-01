@@ -1,0 +1,33 @@
+package com.sikhreader.Model.SearchProduct
+
+data class Data(
+    val book_name: String?,
+    val created_at: String,
+    val deleted_at: Any?,
+    val description: String?,
+    val format: String?,
+    val height: String?,
+    val isbn: Any?,
+    val language: String?,
+    val length: String?,
+    val pages: String?,
+    val price: String?,
+    val product_id: Int,
+    val product_type: String?,
+    val pub_seller_id: String,
+    val related: String?,
+    val remarks: String?,
+    val sale_price: Int,
+    val shipping_class: String?,
+    val short_description: String?,
+    val status: String?,
+    val stock: String?,
+    val tags: Any?,
+    val updated_at: String,
+    val user_type: Int,
+    val visibility: String?,
+    val wc_product_id: String?,
+    val weight: String?,
+    val width: String?,
+    val writer_name: String?
+)

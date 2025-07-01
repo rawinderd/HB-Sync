@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/whitesmoke"
+    tools:context=".RegisterActivity">
+
+    <ImageView
+        android:id="@+id/logon_app_logo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/applogo"
+        app:layout_constraintBottom_toTopOf="@id/login_phone_number_input_lay"
+        app:layout_constraintDimensionRatio="h,3:1"
+        app:layout_constraintEnd_toStartOf="@id/guideline29"
+        app:layout_constraintStart_toStartOf="@id/guideline28" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/login_phone_number_input_lay"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Mobile No."
+        app:layout_constraintBottom_toTopOf="@id/login_email_input_lay"
+        app:layout_constraintEnd_toStartOf="@id/guideline29"
+        app:layout_constraintStart_toStartOf="@id/guideline28">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/register_phone_number_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/login_email_input_lay"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Email"
+        app:layout_constraintBottom_toTopOf="@id/login_password_input_lay"
+        app:layout_constraintEnd_toStartOf="@id/guideline29"
+        app:layout_constraintStart_toStartOf="@id/guideline28">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/register_email_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/login_password_input_lay"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        app:layout_constraintBottom_toTopOf="@id/register_btn"
+        app:layout_constraintEnd_toStartOf="@id/guideline29"
+        app:layout_constraintStart_toStartOf="@id/guideline28">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/register_password_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+
+
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <Button
+        android:id="@+id/register_btn"
+        style="@style/Widget.MaterialComponents.AutoCompleteTextView.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:focusableInTouchMode="false"
+        android:gravity="center_horizontal"
+        android:text="Create Account"
+        android:textAllCaps="false"
+        android:textColor="@color/SolidButtonTextColor"
+        android:textSize="17dp"
+        app:layout_constraintBottom_toTopOf="@id/do_you_text"
+        app:layout_constraintEnd_toEndOf="@id/guideline29"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@id/guideline28" />
+
+    <TextView
+        android:id="@+id/do_you_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@id/sign_in_text"
+        android:text="Do You have an Account?"
+        app:layout_constraintStart_toStartOf="@id/guideline28"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="@color/SolidButtonTextColor"
+        android:textSize="16sp"
+        android:layout_marginBottom="10dp"/>
+    <TextView
+        android:id="@+id/sign_in_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@id/guideline29"
+        android:text=" Sign In"
+        app:layout_constraintStart_toEndOf="@id/do_you_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@color/red"
+        android:layout_marginBottom="10dp"/>
+
+
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline27"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".15" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline28"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="@dimen/left_vertical_guideline" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline29"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="@dimen/right_vertical_guideline" />
+</androidx.constraintlayout.widget.ConstraintLayout>

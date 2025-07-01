@@ -1,0 +1,8 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="left_vertical_guideline">.05</dimen>
+    <dimen name="right_vertical_guideline">.95</dimen>
+    <dimen name="left_20">.20</dimen>
+    <dimen name="left_10">.10</dimen>
+
+</resources>

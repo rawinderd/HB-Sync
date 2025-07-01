@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProductPrice">
+
+    <include
+        android:id="@+id/product_price_toolbar"
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize" />
+
+    <TextView
+        android:id="@+id/price_text"
+        style="@style/BlackBoldHeading"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="15sp"
+        android:layout_height="wrap_content"
+        android:text="Price"
+        app:layout_constraintStart_toStartOf="@id/guideline_left5"
+        app:layout_constraintTop_toBottomOf="@id/product_price_toolbar" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/regular_price_input_outer"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Regular Price"
+        app:layout_constraintEnd_toStartOf="@id/guideline_right95"
+        app:layout_constraintStart_toStartOf="@id/guideline_left5"
+        app:layout_constraintTop_toBottomOf="@id/price_text">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/regular_price_input_inner"
+            android:layout_width="match_parent"
+            android:inputType="number"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <View
+        android:id="@+id/divider1"
+        style="@style/Divider"
+        android:layout_marginTop="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/regular_price_input_outer" />
+
+    <TextView
+        android:id="@+id/sale_text"
+        style="@style/BlackBoldHeading"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="15sp"
+        android:layout_height="wrap_content"
+        android:text="Sale"
+        app:layout_constraintStart_toStartOf="@id/guideline_left5"
+        app:layout_constraintTop_toBottomOf="@id/divider1" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/sale_price_input_outer"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Sale Price"
+        app:layout_constraintEnd_toStartOf="@id/guideline_right95"
+        app:layout_constraintStart_toStartOf="@id/guideline_left5"
+        app:layout_constraintTop_toBottomOf="@id/sale_text">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/sale_price_input_inner"
+            android:layout_width="match_parent"
+            android:inputType="number"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <View
+        android:id="@+id/divider2"
+        style="@style/Divider"
+        android:layout_marginTop="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sale_price_input_outer" />
+
+    <TextView
+        android:id="@+id/schedule_sale_text"
+        style="@style/BlackBoldText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15sp"
+        android:text="Schedule Sale"
+        app:layout_constraintStart_toStartOf="@id/guideline_left10"
+        app:layout_constraintTop_toBottomOf="@id/divider2" />
+
+    <TextView
+        android:id="@+id/automatically_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Automatically Start and End a Sale"
+        app:layout_constraintStart_toStartOf="@id/guideline_left10"
+        app:layout_constraintTop_toBottomOf="@id/schedule_sale_text" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/sale_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        app:layout_constraintBottom_toBottomOf="@id/automatically_text"
+        app:layout_constraintEnd_toEndOf="@id/guideline_right95"
+        app:layout_constraintTop_toTopOf="@id/automatically_text" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/sale_from_date_outer"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="From"
+        app:layout_constraintEnd_toStartOf="@id/guideline_right95"
+        app:layout_constraintStart_toStartOf="@id/guideline_left5"
+        app:layout_constraintTop_toBottomOf="@id/sale_switch">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/sale_from_date_inner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/sale_to_date_outer"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="To"
+        app:layout_constraintEnd_toStartOf="@id/guideline_right95"
+        app:layout_constraintStart_toStartOf="@id/guideline_left5"
+        app:layout_constraintTop_toBottomOf="@id/sale_from_date_outer">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/sale_to_date_inner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <View
+        android:id="@+id/divider3"
+        style="@style/Divider"
+        android:layout_marginTop="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sale_to_date_outer" />
+
+    <TextView
+        android:layout_marginTop="15sp"
+        android:id="@+id/tax_setting_text"
+        style="@style/BlackBoldHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tax Settings"
+        app:layout_constraintStart_toStartOf="@id/guideline_left5"
+        app:layout_constraintTop_toBottomOf="@id/divider3" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/taxable_outer"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Tax Status"
+        app:layout_constraintEnd_toStartOf="@id/guideline_right95"
+        app:layout_constraintStart_toStartOf="@id/guideline_left5"
+        app:layout_constraintTop_toBottomOf="@id/tax_setting_text">
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/tax_status_spinner"
+            android:layout_width="match_parent"
+            android:layout_marginStart="10sp"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_constraintEnd_toEndOf="@id/guideline_right95"
+            app:layout_constraintStart_toStartOf="@+id/guideline_left5"
+            app:layout_constraintTop_toBottomOf="@id/pages_input_outer"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/standard_rate_outer"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Tax Class"
+        app:layout_constraintEnd_toStartOf="@id/guideline_right95"
+        app:layout_constraintStart_toStartOf="@id/guideline_left5"
+        app:layout_constraintTop_toBottomOf="@id/taxable_outer">
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/tax_class_spinner"
+            android:layout_width="match_parent"
+            android:layout_marginStart="10sp"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_constraintEnd_toEndOf="@id/guideline_right95"
+            app:layout_constraintStart_toStartOf="@+id/guideline_left5"
+            app:layout_constraintTop_toBottomOf="@id/pages_input_outer"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_left5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="@dimen/left_vertical_guideline" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_right95"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="@dimen/right_vertical_guideline" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_left20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="@dimen/left_20" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_left10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="@dimen/left_10" />
+</androidx.constraintlayout.widget.ConstraintLayout>

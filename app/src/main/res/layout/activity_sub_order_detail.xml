@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".SubOrderDetail">
+    <include
+        android:id="@+id/home_subOrderDetail"
+        layout="@layout/toolbar_for_product"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize" />
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/home_subOrderDetail">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvSubOrderId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Order Id: "
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/guideline2"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvSubOrderId_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/tvSubOrderId"
+                app:layout_constraintTop_toTopOf="parent"
+                android:text="Order Id: "
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvCustomerAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/BlackBoldText"
+                app:layout_constraintTop_toBottomOf="@id/tvSubOrderId"
+                app:layout_constraintStart_toStartOf="@id/guideline2"
+                android:text="Address:"
+                android:textSize="18sp" />
+            <TextView
+                android:id="@+id/tvCustomerAddress_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/BlackBoldText"
+                app:layout_constraintTop_toBottomOf="@id/tvCustomerAddress"
+                app:layout_constraintStart_toStartOf="@id/guideline2"
+                android:text="Address:"
+                android:textSize="16sp" />
+            <TextView
+                android:id="@+id/tvCustomerAddress_address1"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                style="@style/BlackBoldText"
+                app:layout_constraintTop_toBottomOf="@id/tvCustomerAddress_name"
+                app:layout_constraintStart_toStartOf="@id/guideline2"
+                android:text="Address:"
+                android:textSize="16sp" />
+            <TextView
+                android:id="@+id/tvCustomerAddress_address2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/BlackBoldText"
+                app:layout_constraintTop_toBottomOf="@id/tvCustomerAddress_address1"
+                app:layout_constraintStart_toStartOf="@id/guideline2"
+                android:text="Address:"
+                android:textSize="16sp" />
+            <TextView
+                android:id="@+id/tvCustomerAddress_city_pin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/BlackBoldText"
+                app:layout_constraintTop_toBottomOf="@id/tvCustomerAddress_address2"
+                app:layout_constraintStart_toStartOf="@id/guideline2"
+                android:text="Address:"
+                android:textSize="16sp" />
+            <TextView
+                android:id="@+id/tvCustomerAddress_state_country"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/BlackBoldText"
+                app:layout_constraintTop_toBottomOf="@id/tvCustomerAddress_city_pin"
+                app:layout_constraintStart_toStartOf="@id/guideline2"
+                android:text="Address:"
+                android:textSize="16sp" />
+            <TextView
+                android:id="@+id/tvCustomerAddress_mobile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/BlackBoldText"
+                app:layout_constraintTop_toBottomOf="@id/tvCustomerAddress_state_country"
+                app:layout_constraintStart_toStartOf="@id/guideline2"
+                android:text="Address:"
+                android:textSize="16sp" />
+            <!-- Book List -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:id="@+id/book_details"
+                app:layout_constraintStart_toStartOf="@id/guideline2"
+                android:text="Book Details:"
+                app:layout_constraintTop_toBottomOf="@+id/tvCustomerAddress_mobile"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvBookList"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                app:layout_constraintEnd_toEndOf="@id/guideline3"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@id/guideline2"
+                app:layout_constraintTop_toBottomOf="@id/book_details"
+                tools:listitem="@layout/model_order_cards_dispatch" />
+            <LinearLayout
+                android:id="@+id/Linear_layout_for_track_and_company"
+                android:layout_width="0dp"
+                app:layout_constraintTop_toBottomOf="@+id/rvBookList"
+                android:layout_marginTop="15sp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/guideline2"
+                app:layout_constraintEnd_toEndOf="@id/guideline3">
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/track_code_input_lay"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Track Code"
+                    android:layout_marginEnd="5sp"
+                    android:layout_weight="1">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/track_code_inner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/courier_company_input_lay"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Courier Company"
+                    android:layout_marginStart="5sp"
+                    android:layout_weight="1">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/courier_company_inner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/Linear_layout_for_date_and_status"
+                android:layout_width="0dp"
+                app:layout_constraintTop_toBottomOf="@+id/Linear_layout_for_track_and_company"
+                android:layout_marginTop="15sp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/guideline2"
+                app:layout_constraintEnd_toEndOf="@id/guideline3">
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/date_input_lay"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Date"
+
+                    
+                    android:layout_weight="1"
+                    inputType="date"
+                    app:layout_constraintEnd_toStartOf="@id/guideline29"
+                    app:layout_constraintStart_toStartOf="@id/guideline28"
+                    app:layout_constraintBottom_toTopOf="@id/login_password_input_lay">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/date_inner"
+                        android:inputType="date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <Spinner
+                    android:id="@+id/order_status_spinner"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="10sp"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_constraintTop_toTopOf="parent"/>
+            </LinearLayout>
+            <Button
+                android:id="@+id/submit_order_status_btn"
+                android:layout_width="0dp"
+                android:layout_height="70dp"
+                android:text="Submit"
+                android:layout_marginBottom="10dp"
+                android:textAllCaps="false"
+                android:textColor="@color/SolidButtonTextColor"
+                android:textSize="17dp"
+                app:layout_constraintEnd_toEndOf="@id/guideline3"
+                app:layout_constraintStart_toStartOf="@id/guideline2"
+                app:layout_constraintTop_toBottomOf="@id/Linear_layout_for_date_and_status"/>
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent=".05" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent=".95" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

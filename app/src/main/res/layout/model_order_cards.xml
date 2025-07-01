@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="5sp"
+    android:backgroundTint="@color/whitesmoke"
+    android:layout_marginBottom="5sp"
+    xmlns:tools="http://schemas.android.com/tools">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:id="@+id/pub_id"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="Pub_id:"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:id="@+id/pub_id_text"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="5sp"
+            app:layout_constraintStart_toEndOf="@id/pub_id"
+            android:text="Pub_id"/>
+        <TextView
+            android:id="@+id/sub_order_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/pub_id_text"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="Sub order_id:"/>
+        <TextView
+            android:id="@+id/sub_order_id_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5sp"
+            app:layout_constraintTop_toBottomOf="@id/pub_id_text"
+            app:layout_constraintStart_toEndOf="@id/sub_order_id"
+            android:text="order_id"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_order_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sub_order_id_text"
+            tools:listitem="@layout/model_ordered_products" />
+        <Button
+            android:id="@+id/individual_dispatch_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dispatch"
+            app:layout_constraintTop_toBottomOf="@id/recycler_order_card"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

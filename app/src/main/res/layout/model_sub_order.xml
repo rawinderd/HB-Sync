@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    app:cardCornerRadius="4dp"
+    app:cardElevation="4dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            app:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/textOrderId"
+            android:layout_width="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_height="wrap_content"
+            android:text="Order ID:"
+            android:textStyle="bold"/>
+        <TextView
+            app:layout_constraintStart_toEndOf="@id/textOrderId"
+            android:id="@+id/textOrderId_value"
+            android:layout_width="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_height="wrap_content"
+            android:text="12345"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/textOrderDate"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2024-03-02"/>
+
+        <TextView
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textOrderId"
+            android:id="@+id/textCustName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Customer Name"/>
+        <TextView
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textOrderId"
+            android:id="@+id/textPublisherId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Publisher id"/>
+        <TextView
+            android:id="@+id/textOrderAmount"
+            android:layout_width="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_height="wrap_content"
+            android:text="$150.00"
+            app:layout_constraintTop_toBottomOf="@id/textCustName"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/textOrderStatus"
+            android:layout_width="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_height="wrap_content"
+            android:text="Pending"
+            app:layout_constraintTop_toBottomOf="@id/textCustName"
+            android:textStyle="bold"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

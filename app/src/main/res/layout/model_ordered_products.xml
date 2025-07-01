@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4sp"
+    app:layout_constraintEnd_toEndOf="@id/guideline1">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/Light_Blue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/product_id_ordered_product"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Product id"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/product_name_ordered_product"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="product Name"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/product_id_ordered_product" />
+
+            <TextView
+                android:id="@+id/product_quantity_ordered_product"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="product Quantity"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/product_name_ordered_product" />
+
+            <TextView
+                android:id="@+id/product_multiply_sign"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" x "
+                app:layout_constraintStart_toEndOf="@id/product_quantity_ordered_product"
+                app:layout_constraintTop_toBottomOf="@id/product_name_ordered_product" />
+
+            <TextView
+                android:id="@+id/product_price_ordered_product"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="product price"
+                app:layout_constraintStart_toEndOf="@id/product_multiply_sign"
+                app:layout_constraintTop_toBottomOf="@id/product_name_ordered_product" />
+
+            <TextView
+                android:id="@+id/product_equals_to_sign"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" = "
+                app:layout_constraintStart_toEndOf="@id/product_price_ordered_product"
+                app:layout_constraintTop_toBottomOf="@id/product_name_ordered_product" />
+
+            <TextView
+                android:id="@+id/product_total_ordered_product"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="product price Total"
+                app:layout_constraintStart_toEndOf="@id/product_equals_to_sign"
+                app:layout_constraintTop_toBottomOf="@id/product_name_ordered_product" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+                <TextView
+                    android:id="@+id/product_shipping_status_ordered_product"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pending"
+                    android:layout_weight="1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/product_shipped_switch"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginRight="10sp"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".75" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

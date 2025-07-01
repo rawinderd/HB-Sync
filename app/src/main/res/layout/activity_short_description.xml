@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ShortDescription">
+    <include
+        android:id="@+id/short_description_toolbar"
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize" />
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/short_description_input_outer"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Enter Short Description"
+        app:layout_constraintEnd_toStartOf="@id/guideline_right95"
+        app:layout_constraintStart_toStartOf="@id/guideline_left5"
+        app:layout_constraintTop_toBottomOf="@id/short_description_toolbar">
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/short_description_input_inner"
+        android:layout_width="match_parent"
+        android:minLines="10"
+        android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_left5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="@dimen/left_vertical_guideline" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_right95"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="@dimen/right_vertical_guideline" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

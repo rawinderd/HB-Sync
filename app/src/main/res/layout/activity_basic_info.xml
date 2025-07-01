@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".BasicInfo">
+
+    <include
+        android:id="@+id/basic_info_toolbar"
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/isbn_input_outer"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="ISBN No."
+        app:layout_constraintEnd_toStartOf="@id/guideline_right95"
+        app:layout_constraintStart_toStartOf="@id/guideline_left5"
+        app:layout_constraintTop_toBottomOf="@id/basic_info_toolbar">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/isbn_input_inner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/writer_name_input_outer"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Writer Name"
+        app:layout_constraintEnd_toStartOf="@id/guideline_right95"
+        app:layout_constraintStart_toStartOf="@id/guideline_left5"
+        app:layout_constraintTop_toBottomOf="@id/isbn_input_outer">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/writer_name_input_inner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/pages_input_outer"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Pages"
+        app:layout_constraintEnd_toStartOf="@id/guideline_right95"
+        app:layout_constraintStart_toStartOf="@id/guideline_left5"
+        app:layout_constraintTop_toBottomOf="@id/writer_name_input_outer">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/pages_input_inner"
+            android:layout_width="match_parent"
+            android:inputType="number"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/language_input_outer"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Language"
+        app:layout_constraintEnd_toStartOf="@id/guideline_right95"
+        app:layout_constraintStart_toStartOf="@id/guideline_left5"
+        app:layout_constraintTop_toBottomOf="@id/pages_input_outer">
+
+        <Spinner
+            android:id="@+id/language_spinner"
+            android:layout_width="match_parent"
+            android:layout_marginStart="10sp"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_constraintEnd_toEndOf="@id/guideline_right95"
+            app:layout_constraintStart_toStartOf="@+id/guideline_left5"
+            app:layout_constraintTop_toBottomOf="@id/pages_input_outer"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/format_text"
+        style="@style/BlackBoldText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15sp"
+        android:text="Format"
+        app:layout_constraintStart_toStartOf="@id/guideline_left5"
+        app:layout_constraintTop_toBottomOf="@id/language_input_outer" />
+
+    <RadioGroup
+        android:id="@+id/format_radio_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@id/format_text"
+        app:layout_constraintEnd_toEndOf="@id/guideline_right95"
+        app:layout_constraintStart_toEndOf="@id/format_text"
+        app:layout_constraintTop_toTopOf="@id/format_text">
+
+        <RadioButton
+            android:id="@+id/rb_paper_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Paper Back" />
+
+        <RadioButton
+            android:id="@+id/rb_hard_bound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hard Bound" />
+
+    </RadioGroup>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_left5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="@dimen/left_vertical_guideline" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_right95"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="@dimen/right_vertical_guideline" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_left20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="@dimen/left_20" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_left10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="@dimen/left_10" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
