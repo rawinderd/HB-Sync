@@ -1,26 +1,27 @@
-package com.sikhreader.ViewModels
+package com.hook2book.hbsync.ViewModels
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.ProductTagsMain
 import com.google.gson.JsonObject
-import com.sikhreader.EnumClasses.ApiResult
-import com.sikhreader.Model.AddProduct.ApiResponse
-import com.sikhreader.Model.NewTag.newTag
-import com.sikhreader.Model.SingleProduct.ProductMainSingle
-import com.sikhreader.Model.UpdatePreStatus.UpdatePreStatus
+import com.hook2book.hbsync.EnumClasses.ApiResult
+import com.hook2book.hbsync.Model.NewTag.ApiResponse
+import com.hook2book.hbsync.Model.NewTag.newTag
+import com.hook2book.hbsync.Model.ProductTags.ProductTagsMain
+import com.hook2book.hbsync.Model.SingleProduct.ProductMainSingle
+import com.hook2book.hbsync.Model.UpdatePreStatus.UpdatePreStatus
+import com.hook2book.hbsync.Model.updateWCProduct.updateWCProduct
+import com.hook2book.hbsync.Repository.AddProductRepo
+import com.hook2book.hbsync.Repository.ProductsTagsRepo
 
-import com.sikhreader.Model.updateWCProduct.updateWCProduct
-import com.sikhreader.Repository.AddProductRepo
-import com.sikhreader.Repository.ProductsTagsRepo
 import kotlinx.coroutines.launch
 
-class AddProductViewModel: ViewModel() {
+class AddProductViewModel(application: Application) : AndroidViewModel(application) {
 
-    var addProductRepo:AddProductRepo=AddProductRepo()
-    var productsTagsRepo:ProductsTagsRepo=ProductsTagsRepo()
+    var addProductRepo: AddProductRepo = AddProductRepo(application)
+    var productsTagsRepo: ProductsTagsRepo = ProductsTagsRepo(application)
 
     fun addProductStatusInDB(): LiveData<ApiResult<ApiResponse>> {
         return addProductRepo.apiResult
@@ -32,15 +33,18 @@ class AddProductViewModel: ViewModel() {
             addProductRepo.addProductToDB1(makeObject)
         }
     }
+
     fun addProductResPonse(): MutableLiveData<ApiResult<ApiResponse>> {
         return addProductRepo.apiResult
 
     }
-    fun fetchSingleProductData(id:String) {
+
+    fun fetchSingleProductData(id: String) {
         viewModelScope.launch {
             addProductRepo.fetchSingleProductData(id)
         }
     }
+
     fun addSingleProductResPonse(): MutableLiveData<ApiResult<ProductMainSingle>> {
         return addProductRepo.apiResultSingleProduct
 
@@ -48,10 +52,11 @@ class AddProductViewModel: ViewModel() {
 
     fun updateProduct(mapProductDataToJsonObject: JsonObject, productId: String) {
         viewModelScope.launch {
-            addProductRepo.updateProduct(mapProductDataToJsonObject,productId)
+            addProductRepo.updateProduct(mapProductDataToJsonObject, productId)
 
         }
     }
+
     fun updateProductResPonse(): MutableLiveData<ApiResult<ApiResponse>> {
         return addProductRepo.UpdateApiResult
 
@@ -59,10 +64,11 @@ class AddProductViewModel: ViewModel() {
 
     fun updateStatusInWC(status: String, wcProductId: String) {
         viewModelScope.launch {
-            addProductRepo.updateProductStatusInWC(status,wcProductId)
+            addProductRepo.updateProductStatusInWC(status, wcProductId)
 
         }
     }
+
     fun updateStatusInWCResponse(): MutableLiveData<ApiResult<updateWCProduct>> {
         return addProductRepo.apiResultUpdateWCProduct
 
@@ -70,20 +76,22 @@ class AddProductViewModel: ViewModel() {
 
     fun updateStatusInPre(status: String, productId: String) {
         viewModelScope.launch {
-            addProductRepo.updateStatusInPre(status,productId)
+            addProductRepo.updateStatusInPre(status, productId)
 
         }
     }
+
     fun updateStatusInPreResponse(): MutableLiveData<ApiResult<UpdatePreStatus>> {
         return addProductRepo.apiResultUpdatePreStatus
 
     }
 
     fun searchWriterTagToAdd(keyword: String, pageNo: Int) {
-         viewModelScope.launch {
-             productsTagsRepo.getTagList(keyword, pageNo)
-         }
+        viewModelScope.launch {
+            productsTagsRepo.getTagList(keyword, pageNo)
+        }
     }
+
     fun getSearchedWriterTag(): LiveData<ApiResult<List<ProductTagsMain>>> {
         return productsTagsRepo.apiResult
 
@@ -94,24 +102,29 @@ class AddProductViewModel: ViewModel() {
             productsTagsRepo.createNewTag(keyword)
         }
     }
+
     fun getNewWriterNameTag(): LiveData<ApiResult<newTag>> {
         return productsTagsRepo.apiResultNewTag
 
     }
+
     fun searchTagToAddLangauage(keyword: String, pageNo: Int) {
         viewModelScope.launch {
             productsTagsRepo.getTagListLanguage(keyword, pageNo)
         }
     }
+
     fun getSearchedTagLanguage(): LiveData<ApiResult<List<ProductTagsMain>>> {
         return productsTagsRepo.apiResultLanguageTag
 
     }
+
     fun searchTagToAddCategory(keyword: String, pageNo: Int) {
         viewModelScope.launch {
             productsTagsRepo.getTagListCategory(keyword, pageNo)
         }
     }
+
     fun getSearchedTagCategory(): LiveData<ApiResult<List<ProductTagsMain>>> {
         return productsTagsRepo.apiResultCategoryTag
 

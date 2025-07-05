@@ -1,4 +1,4 @@
-package com.sikhreader.Model.SubOrderData
+package com.hook2book.hbsync.Model.SubOrderData
 
 data class OrderDetail(
     val comment: String,

@@ -5,10 +5,12 @@ import android.text.TextUtils
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import com.hook2book.hbsync.Model.SellerData.DataOuter
+import com.hook2book.hbsync.Model.ViewModels.SellerDataFormViewModel
 import com.hook2book.hbsync.UtilityClass.BaseActivity
 import com.hook2book.hbsync.databinding.ActivitySellerDataFormBinding
-import com.sikhreader.Model.SellerData.DataOuter
-import com.sikhreader.ViewModels.SellerDataFormViewModel
+
+
 
 class SellerDataForm : BaseActivity() {
     private lateinit var binding: ActivitySellerDataFormBinding

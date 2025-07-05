@@ -1,22 +1,24 @@
-package com.sikhreader.ViewModels
+package com.hook2book.hbsync.ViewModels
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.ProductTagsMain
-import com.sikhreader.EnumClasses.ApiResult
-import com.sikhreader.Model.Categories.CategoriesMain
-import com.sikhreader.Repository.ProductCategoriesRepo
+import com.hook2book.hbsync.EnumClasses.ApiResult
+import com.hook2book.hbsync.Model.Categories.CategoriesMain
+import com.hook2book.hbsync.Repository.ProductCategoriesRepo
 import kotlinx.coroutines.launch
 
-class ProductCategoriesViewModel:ViewModel() {
-    var productCategoriesRepo:ProductCategoriesRepo= ProductCategoriesRepo()
+class ProductCategoriesViewModel(application: Application) : AndroidViewModel(application) {
+    var productCategoriesRepo: ProductCategoriesRepo = ProductCategoriesRepo(application)
+
 
     fun fetchCategories() {
         viewModelScope.launch {
             productCategoriesRepo.fetchCategories()
         }
     }
+
     fun getCategoriesList(): LiveData<ApiResult<List<CategoriesMain>>> {
         return productCategoriesRepo.apiResult
 

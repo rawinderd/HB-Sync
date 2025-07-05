@@ -1,18 +1,20 @@
-package com.sikhreader.ViewModels
+package com.hook2book.hbsync.ViewModels
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.hook2book.hbsync.EnumClasses.ApiResult
+import com.hook2book.hbsync.Model.SellerData.SellerData
 import com.hook2book.hbsync.Model.Token.Token
-import com.sikhreader.EnumClasses.ApiResult
-import com.sikhreader.Model.SellerData.SellerData
-import com.sikhreader.Repository.CommonLoginRepo
-import com.sikhreader.Repository.SellerDataFormRepo
+import com.hook2book.hbsync.Repository.CommonLoginRepo
+import com.hook2book.hbsync.Repository.SellerDataFormRepo
+
 import kotlinx.coroutines.launch
 
-class LoginViewModel : ViewModel() {
-    private val commonLoginRepository: CommonLoginRepo = CommonLoginRepo()
+class LoginViewModel(application: Application) : AndroidViewModel(application) {
+    private val commonLoginRepository: CommonLoginRepo = CommonLoginRepo(application)
     private var sellerDataFormRepo: SellerDataFormRepo = SellerDataFormRepo()
     fun fetchUserData(pubId: String) {
         viewModelScope.launch {

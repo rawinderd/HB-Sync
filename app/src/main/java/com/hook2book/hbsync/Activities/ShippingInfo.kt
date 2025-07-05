@@ -8,10 +8,11 @@ import android.widget.Spinner
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
+import com.hook2book.hbsync.Model.ViewModels.ShippingViewModel
 import com.hook2book.hbsync.R
 import com.hook2book.hbsync.UtilityClass.BaseActivity
 import com.hook2book.hbsync.databinding.ActivityShippingInfoBinding
-import com.sikhreader.ViewModels.ShippingViewModel
+
 
 class ShippingInfo : BaseActivity() {
     private lateinit var binding: ActivityShippingInfoBinding

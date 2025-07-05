@@ -1,5 +1,4 @@
-package com.sikhreader.Model.SingleProduct
-
+package com.hook2book.hbsync.Model.SingleProduct
 data class Image(
     val created_at: String,
     val deleted_at: Any?,

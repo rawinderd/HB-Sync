@@ -1,4 +1,4 @@
-package com.sikhreader.Model.Categories
+package com.hook2book.hbsync.Model.NewTag
 
 import java.io.Serializable
 

@@ -1,4 +1,4 @@
-package com.sikhreader.Model
+package com.hook2book.hbsync.Model
 
 
 data class Product( var status: String? = null,

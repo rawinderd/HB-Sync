@@ -1,4 +1,4 @@
-package com.sikhreader.Model.Temp
+package com.hook2book.hbsync.Model.Temp
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName

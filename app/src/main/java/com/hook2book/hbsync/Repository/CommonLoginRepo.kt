@@ -1,24 +1,22 @@
-package com.sikhreader.Repository
+package com.hook2book.hbsync.Repository
 
+import android.app.Application
 import android.util.Base64
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
 import com.google.gson.JsonObject
+import com.hook2book.hbsync.EnumClasses.ApiResult
+import com.hook2book.hbsync.Interface.RetroService
 import com.hook2book.hbsync.Model.Token.Token
-import com.sikhreader.EnumClasses.ApiResult
-import com.sikhreader.Interface.RetroService
+
 import java.nio.charset.StandardCharsets
 
-class CommonLoginRepo {
+class CommonLoginRepo(application: Application) {
     var apiResultLogin: MutableLiveData<ApiResult<Token>> = MutableLiveData()
+    var application: Application = application
     suspend fun allowAccess(username: String, password: String) {
-        val ck = "ck_7fdbe299e87f8c839402fa4720538e2c948435aa"
-        val cs = "cs_74da2c5beb91a60993eb8977d86e307e075a854f"
-        val base = ck + ":" + cs
-        val authHeader = "Basic " + Base64.encodeToString(
-            base.toByteArray(StandardCharsets.UTF_8), Base64.NO_WRAP
-        )
+
         val jsonObject = JsonObject()
         jsonObject.addProperty("username", username)
         jsonObject.addProperty("password", password)

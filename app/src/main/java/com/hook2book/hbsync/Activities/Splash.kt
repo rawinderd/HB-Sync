@@ -3,13 +3,12 @@ package com.hook2book.hbsync.Activities
 import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
+import com.hook2book.hbsync.EnumClasses.ApiStatus
+import com.hook2book.hbsync.Model.ViewModels.SplashViewModel
 import com.hook2book.hbsync.UtilityClass.BaseActivity
 import com.hook2book.hbsync.UtilityClass.Preferences
 import com.hook2book.hbsync.UtilityClass.Prevalent
 import com.hook2book.hbsync.databinding.ActivitySplashBinding
-import com.sikhreader.EnumClasses.ApiStatus
-
-import com.sikhreader.ViewModels.SplashViewModel
 import io.paperdb.Paper
 import java.nio.charset.StandardCharsets
 

@@ -1,6 +1,5 @@
-package com.sikhreader.Model.SingleProduct
-
-class Data
+package com.hook2book.hbsync.Model.SingleProduct
+ class Data
 {
     var book_name: String?=null
     var category: List<Category>?=null

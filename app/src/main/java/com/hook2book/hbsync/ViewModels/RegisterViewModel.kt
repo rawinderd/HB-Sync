@@ -1,19 +1,21 @@
-package com.sikhreader.ViewModels
+package com.hook2book.hbsync.ViewModels
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.hook2book.hbsync.EnumClasses.ApiResult
+import com.hook2book.hbsync.Model.Registration.RegistrationData
+import com.hook2book.hbsync.Model.Registration.RegistrationResponse
 import com.hook2book.hbsync.Model.Token.Token
-import com.sikhreader.EnumClasses.ApiResult
-import com.sikhreader.Model.Registration.RegistrationData
-import com.sikhreader.Model.Registration.RegistrationResponse
-import com.sikhreader.Repository.CommonLoginRepo
-import com.sikhreader.Repository.RegisterRepo
+import com.hook2book.hbsync.Repository.CommonLoginRepo
+import com.hook2book.hbsync.Repository.RegisterRepo
+
 import kotlinx.coroutines.launch
 
-class RegisterViewModel : ViewModel() {
-    private val registerRepo: RegisterRepo = RegisterRepo()
-    private val commonLoginRepository: CommonLoginRepo = CommonLoginRepo()
+class RegisterViewModel(application: Application) : AndroidViewModel(application) {
+    private val registerRepo: RegisterRepo = RegisterRepo(application)
+    private val commonLoginRepository: CommonLoginRepo = CommonLoginRepo(application)
 
     fun registerUserAccount(registrationData: RegistrationData) {
         viewModelScope.launch {

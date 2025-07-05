@@ -1,12 +1,12 @@
-package com.sikhreader.ViewModels
+package com.hook2book.hbsync.Model.ViewModels
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.gson.JsonArray
-import com.sikhreader.EnumClasses.ApiResult
-import com.sikhreader.Model.SingleSubOrderDetail.SingleSubOrderDetail
-import com.sikhreader.Repository.SubOrderDetailRepo
+import com.hook2book.hbsync.EnumClasses.ApiResult
+import com.hook2book.hbsync.Model.SingleSubOrderDetail.SingleSubOrderDetail
+import com.hook2book.hbsync.Repository.SubOrderDetailRepo
 import kotlinx.coroutines.launch
 
 class SubOrderDetailViewModel : ViewModel() {
@@ -21,15 +21,13 @@ class SubOrderDetailViewModel : ViewModel() {
         return subOrderDetailRepo.apiResultSingleSubOrderDetail
     }
 
-    fun submitOrderStatus(subOrderId: String, trackCode: String, courierCompany: String, date: String, status: String) {
+    fun submitOrderStatus(
+        subOrderId: String, trackCode: String, courierCompany: String, date: String, status: String
+    ) {
 
         viewModelScope.launch {
             subOrderDetailRepo.submitOrderStatus(
-                subOrderId,
-                trackCode,
-                courierCompany,
-                date,
-                status
+                subOrderId, trackCode, courierCompany, date, status
             )
         }
     }

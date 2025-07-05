@@ -17,17 +17,19 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.coroutineScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.ProductTagsMain
+
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
+import com.hook2book.hbsync.Adapters.ProductTagsAdapter
+import com.hook2book.hbsync.EnumClasses.ApiStatus
+import com.hook2book.hbsync.Model.NewTag.newTag
+import com.hook2book.hbsync.Model.ProductTags.ProductTagsMain
+import com.hook2book.hbsync.Model.ProductTags.RemovedTagMain
 import com.hook2book.hbsync.R
 import com.hook2book.hbsync.UtilityClass.BaseActivity
+import com.hook2book.hbsync.ViewModels.ProductTagsViewModel
 import com.hook2book.hbsync.databinding.ActivityProductTagsBinding
-import com.sikhreader.Adapters.ProductTagsAdapter
-import com.sikhreader.EnumClasses.ApiStatus
-import com.sikhreader.Model.NewTag.newTag
-import com.sikhreader.Model.ProductTags.RemovedTagMain
-import com.sikhreader.ViewModels.ProductTagsViewModel
+
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch

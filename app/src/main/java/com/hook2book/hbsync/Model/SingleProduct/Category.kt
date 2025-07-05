@@ -1,5 +1,4 @@
-package com.sikhreader.Model.SingleProduct
-
+package com.hook2book.hbsync.Model.SingleProduct
 data class Category(
     val category_id: Int,
     val category_name: String,

@@ -1,4 +1,4 @@
-package com.sikhreader.Model.SearchProduct
+package com.hook2book.hbsync.Model.SearchProduct
 
 data class Link(
     val active: Boolean,

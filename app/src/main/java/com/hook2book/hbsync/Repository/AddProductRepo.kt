@@ -1,39 +1,33 @@
-package com.sikhreader.Repository
+package com.hook2book.hbsync.Repository
 
+import android.app.Application
 import android.util.Base64
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
 import com.google.gson.JsonObject
-import com.sikhreader.EnumClasses.ApiResult
-import com.sikhreader.Interface.RetroService
-import com.sikhreader.Model.AddProduct.ApiResponse
-import com.sikhreader.Model.SingleProduct.ProductMainSingle
-import com.sikhreader.Model.UpdatePreStatus.UpdatePreStatus
-import com.sikhreader.Model.addProduct2.ProductMain
-import com.sikhreader.Model.updateWCProduct.updateWCProduct
+import com.hook2book.hbsync.EnumClasses.ApiResult
+import com.hook2book.hbsync.Interface.RetroService
+import com.hook2book.hbsync.Model.NewTag.ApiResponse
+import com.hook2book.hbsync.Model.SingleProduct.ProductMainSingle
+import com.hook2book.hbsync.Model.UpdatePreStatus.UpdatePreStatus
+import com.hook2book.hbsync.Model.updateWCProduct.updateWCProduct
+import com.hook2book.hbsync.UtilityClass.Preferences
+
 import java.nio.charset.StandardCharsets
 
 
-class AddProductRepo {
+class AddProductRepo(application: Application) {
     var apiResult: MutableLiveData<ApiResult<ApiResponse>> = MutableLiveData()
     var UpdateApiResult: MutableLiveData<ApiResult<ApiResponse>> = MutableLiveData()
     var apiResultSingleProduct: MutableLiveData<ApiResult<ProductMainSingle>> = MutableLiveData()
     var apiResultUpdateWCProduct: MutableLiveData<ApiResult<updateWCProduct>> = MutableLiveData()
     var apiResultUpdatePreStatus: MutableLiveData<ApiResult<UpdatePreStatus>> = MutableLiveData()
+    var application: Application = application
 
     suspend fun addProductToDB1(makeObject: JsonObject) {
-        Log.e("Success Rawinder01", Gson().toJson(makeObject))
-        val ck = "ck_7fdbe299e87f8c839402fa4720538e2c948435aa"
-        val cs = "cs_74da2c5beb91a60993eb8977d86e307e075a854f"
-        val base = ck + ":" + cs
-        val authHeader = "Basic " + Base64.encodeToString(
-            base.toByteArray(StandardCharsets.UTF_8), Base64.NO_WRAP
-        )
-        Log.i("TAG", "addProductToDB1: "+makeObject.get("pub_seller_id"))
-        Log.e("Success Rawinder201 updatejson1", Gson().toJson(makeObject))
         val response = RetroService.retroInstance.addProductToDB1(
-            authHeader,
+            Preferences.loadCombinedKey(application),
             makeObject
         )
         if (response.isSuccessful) {
@@ -66,14 +60,8 @@ class AddProductRepo {
     }
 
     suspend fun fetchSingleProductData(id: String) {
-        val ck = "ck_7fdbe299e87f8c839402fa4720538e2c948435aa"
-        val cs = "cs_74da2c5beb91a60993eb8977d86e307e075a854f"
-        val base = ck + ":" + cs
-        val authHeader = "Basic " + Base64.encodeToString(
-            base.toByteArray(StandardCharsets.UTF_8), Base64.NO_WRAP
-        )
         val response = RetroService.retroInstance.fetchSingleProduct(
-            authHeader, id
+            Preferences.loadCombinedKey(application), id
         )
         if (response.isSuccessful) {
             Log.e("Success Rawinder52", Gson().toJson(response.body()))
@@ -102,15 +90,10 @@ class AddProductRepo {
     }
 
     suspend fun updateProduct(makeObject: JsonObject, productId: String) {
-        val ck = "ck_7fdbe299e87f8c839402fa4720538e2c948435aa"
-        val cs = "cs_74da2c5beb91a60993eb8977d86e307e075a854f"
-        val base = ck + ":" + cs
-        val authHeader = "Basic " + Base64.encodeToString(
-            base.toByteArray(StandardCharsets.UTF_8), Base64.NO_WRAP
-        )
-        Log.e("Success Rawinder201 updatejson", Gson().toJson(makeObject))
+
+
         val response = RetroService.retroInstance.updateProductToDB1(
-            authHeader,
+            Preferences.loadCombinedKey(application),
             makeObject,productId
         )
         if (response.isSuccessful) {
@@ -143,15 +126,10 @@ class AddProductRepo {
     }
 
     suspend fun updateProductStatusInWC(status: String, wcProductId: String) {
-        val ck = "ck_7fdbe299e87f8c839402fa4720538e2c948435aa"
-        val cs = "cs_74da2c5beb91a60993eb8977d86e307e075a854f"
-        val base = ck + ":" + cs
-        val authHeader = "Basic " + Base64.encodeToString(
-            base.toByteArray(StandardCharsets.UTF_8), Base64.NO_WRAP
-        )
+
         val params = HashMap<String, String>()
         params.put("status", status)
-        val response = RetroService.retroInstance.updateProductStatusInWC(authHeader,wcProductId,params)
+        val response = RetroService.retroInstance.updateProductStatusInWC(Preferences.loadCombinedKey(application),wcProductId,params)
         if (response.isSuccessful) {
             apiResultUpdateWCProduct.postValue(
                 ApiResult.Success(

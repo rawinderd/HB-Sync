@@ -1,4 +1,5 @@
-package com.sikhreader.Adapters
+package com.hook2book.hbsync.Adapters
+
 
 import android.util.Log
 import android.view.LayoutInflater
@@ -7,8 +8,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.widget.SwitchCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.hook2book.hbsync.Model.SingleSubOrderDetail.SingleSubOrderDetail
 import com.hook2book.hbsync.R
-import com.sikhreader.Model.SingleSubOrderDetail.SingleSubOrderDetail
 
 class SubOrderDetailAdapter(
     private val itemClickListener: ItemClickListener,

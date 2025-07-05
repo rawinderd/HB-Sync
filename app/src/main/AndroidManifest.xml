@@ -21,7 +21,7 @@
     <activity
         android:name=".Activities.SubOrderDetail"
         android:exported="false"
-        android:theme="@style/Theme.SRMulti" />
+        android:theme="@style/Theme.HBSYNC" />
     <activity
         android:name=".Activities.SettingActivity"
         android:exported="false" />
@@ -47,7 +47,7 @@
     <activity
         android:name=".Activities.ProductTags2"
         android:exported="false"
-        android:theme="@style/Theme.SRMulti" />
+        android:theme="@style/Theme.HBSYNC" />
     <activity
         android:name=".Activities.ShippingInfo"
         android:exported="false" />
@@ -72,10 +72,10 @@
     <activity
         android:name=".Activities.AddProduct"
         android:exported="false"
-        android:theme="@style/Theme.SRMulti" />
+        android:theme="@style/Theme.HBSYNC" />
     <activity
         android:name=".Activities.MainActivity"
         android:exported="true"
-        android:theme="@style/Theme.SRMulti" />
+        android:theme="@style/Theme.HBSYNC" />
 </application>
     </manifest>

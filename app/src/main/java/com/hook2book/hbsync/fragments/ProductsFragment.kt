@@ -1,4 +1,4 @@
-package com.sikhreader.fragments
+package com.hook2book.hbsync.fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -21,13 +21,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener
 import com.hook2book.hbsync.Activities.AddProduct
+import com.hook2book.hbsync.Adapters.ProductListAdapter
+import com.hook2book.hbsync.EnumClasses.ApiStatus
+import com.hook2book.hbsync.Model.SearchProduct.Data
 import com.hook2book.hbsync.R
 import com.hook2book.hbsync.UtilityClass.Preferences
+import com.hook2book.hbsync.ViewModels.ProductListViewModel
 import com.hook2book.hbsync.databinding.FragmentProductsBinding
-import com.sikhreader.Adapters.ProductListAdapter
-import com.sikhreader.EnumClasses.ApiStatus
-import com.sikhreader.Model.SearchProduct.Data
-import com.sikhreader.ViewModels.ProductListViewModel
+
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay

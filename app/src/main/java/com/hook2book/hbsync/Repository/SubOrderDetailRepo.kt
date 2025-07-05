@@ -1,15 +1,15 @@
-package com.sikhreader.Repository
+package com.hook2book.hbsync.Repository
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
 import com.google.gson.JsonArray
-import com.google.gson.JsonObject
-import com.sikhreader.EnumClasses.ApiResult
-import com.sikhreader.Interface.RetroService
-import com.sikhreader.Model.SingleSubOrderDetail.SingleSubOrderDetail
-import com.sikhreader.Model.productStatusUpdate.productStatusUpdate
-import com.sikhreader.Model.subOrderUpdate.subOrderUpdate
+import com.hook2book.hbsync.EnumClasses.ApiResult
+import com.hook2book.hbsync.Interface.RetroService
+import com.hook2book.hbsync.Model.SingleSubOrderDetail.SingleSubOrderDetail
+import com.hook2book.hbsync.Model.productStatusUpdate.productStatusUpdate
+import com.hook2book.hbsync.Model.subOrderUpdate.subOrderUpdate
+
 
 class SubOrderDetailRepo {
     var apiResultSingleSubOrderDetail: MutableLiveData<ApiResult<SingleSubOrderDetail>> =

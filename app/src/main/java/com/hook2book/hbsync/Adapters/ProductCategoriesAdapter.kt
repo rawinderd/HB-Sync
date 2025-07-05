@@ -1,14 +1,15 @@
 package com.hook2book.hbsync.Adapters
 
 
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.hook2book.hbsync.Activities.ProductCategories
+import com.hook2book.hbsync.Model.NewTag.CategoriesForListing
 import com.hook2book.hbsync.R
-import com.sikhreader.Model.Categories.CategoriesForListing
 
 
 class ProductCategoriesAdapter(private val itemClickListener: ProductCategories) :

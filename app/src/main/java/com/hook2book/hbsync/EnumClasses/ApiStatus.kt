@@ -1,4 +1,4 @@
-package com.sikhreader.EnumClasses
+package com.hook2book.hbsync.EnumClasses
 
 enum class ApiStatus {
     SUCCESS, ERROR, LOADING

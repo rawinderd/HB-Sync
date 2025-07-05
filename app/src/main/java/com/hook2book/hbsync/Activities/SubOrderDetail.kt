@@ -12,12 +12,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
+import com.hook2book.hbsync.Adapters.SubOrderDetailAdapter
+import com.hook2book.hbsync.Model.SingleSubOrderDetail.SingleSubOrderDetail
+import com.hook2book.hbsync.Model.ViewModels.SubOrderDetailViewModel
 import com.hook2book.hbsync.R
 import com.hook2book.hbsync.UtilityClass.BaseActivity
 import com.hook2book.hbsync.databinding.ActivitySubOrderDetailBinding
-import com.sikhreader.Adapters.SubOrderDetailAdapter
-import com.sikhreader.Model.SingleSubOrderDetail.SingleSubOrderDetail
-import com.sikhreader.ViewModels.SubOrderDetailViewModel
 
 class SubOrderDetail : BaseActivity(), SubOrderDetailAdapter.ItemClickListener {
 

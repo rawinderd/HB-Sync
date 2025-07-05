@@ -1,5 +1,4 @@
-package com.sikhreader.Model.SubOrderData
-
+package com.hook2book.hbsync.Model.SubOrderData
 data class Data(
     val address_1: String,
     val address_2: String,

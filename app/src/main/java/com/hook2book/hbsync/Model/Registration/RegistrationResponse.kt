@@ -1,8 +1,8 @@
-package com.sikhreader.Model.Registration
+package com.hook2book.hbsync.Model.Registration
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-import com.sikhreader.Model.CommonModels.Links
+import com.hook2book.hbsync.Model.CommonModels.Links
 
 
 class RegistrationResponse {

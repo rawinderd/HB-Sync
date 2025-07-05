@@ -1,11 +1,12 @@
-package com.sikhreader.Adapters
+package com.hook2book.hbsync.Adapters
+
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.ProductTagsMain
+import com.hook2book.hbsync.Model.ProductTags.ProductTagsMain
 import com.hook2book.hbsync.R
 
 

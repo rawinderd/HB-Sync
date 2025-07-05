@@ -1,16 +1,18 @@
-package com.sikhreader.Repository
-
+package com.hook2book.hbsync.Repository
+import android.app.Application
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
-import com.sikhreader.EnumClasses.ApiResult
-import com.sikhreader.Interface.RetroService
-import com.sikhreader.Model.SearchProduct.SearchProduct
+import com.hook2book.hbsync.EnumClasses.ApiResult
+import com.hook2book.hbsync.Interface.RetroService
+import com.hook2book.hbsync.Model.SearchProduct.SearchProduct
 
 
-class ProductListRepo {
+
+class ProductListRepo(application: Application) {
 
     var apiResultSearchProduct: MutableLiveData<ApiResult<SearchProduct>> = MutableLiveData()
+    var application: Application = application
 
     suspend fun fetchProducts(
         searchString: String,

@@ -1,6 +1,5 @@
-package com.sikhreader.Model.CommonModels
+package com.hook2book.hbsync.Model.CommonModels
 
-import com.example.Self
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable

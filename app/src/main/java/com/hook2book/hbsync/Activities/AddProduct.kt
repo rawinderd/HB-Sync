@@ -1,5 +1,6 @@
 package com.hook2book.hbsync.Activities
 
+
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
@@ -19,33 +20,33 @@ import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
-import com.hook2book.hbsync.Activities.ProductPrice
+import com.hook2book.hbsync.EnumClasses.ApiStatus
+import com.hook2book.hbsync.Model.NewTag.RemovedCategoryChipMain
+
+import com.hook2book.hbsync.Model.NewTag.tagArray
+import com.hook2book.hbsync.Model.ProductTags.RemovedTagMain
+import com.hook2book.hbsync.Model.SingleProduct.ProductMainSingle
 import com.hook2book.hbsync.R
 import com.hook2book.hbsync.UtilityClass.BaseActivity
 import com.hook2book.hbsync.UtilityClass.Preferences
+import com.hook2book.hbsync.ViewModels.AddProductViewModel
 import com.hook2book.hbsync.databinding.ActivityAddProductBinding
-import com.sikhreader.EnumClasses.ApiStatus
-import com.sikhreader.Model.Categories.RemovedCategoryChipMain
-import com.sikhreader.Model.ProductTags.RemovedTagMain
-import com.sikhreader.Model.SingleProduct.ProductMainSingle
-import com.sikhreader.Model.tagArray
-import com.sikhreader.ViewModels.AddProductViewModel
 
 
 class AddProduct : BaseActivity() {
     private lateinit var binding: ActivityAddProductBinding
-    private var tagLoadingCounter: Int=3
+    private var tagLoadingCounter: Int = 3
     private lateinit var height: String
     private lateinit var width: String
     private lateinit var length: String
     private lateinit var toolbar: Toolbar
     val dimen = arrayOf("#", "#", "#")
     lateinit var saveShareBtn: Button
-    lateinit var addProductViewModel: AddProductViewModel
     var productDataLocal: ProductMainSingle = ProductMainSingle()
     var fetchedProductData: ProductMainSingle = ProductMainSingle()
     var cate: MutableList<RemovedCategoryChipMain> = ArrayList()
     var tagArrayLocal: MutableList<tagArray> = ArrayList()
+    lateinit var addProductViewModel: AddProductViewModel
     var tagsList: MutableList<RemovedTagMain> = ArrayList()
     private lateinit var productType: String
     private lateinit var productId: String
@@ -609,15 +610,14 @@ class AddProduct : BaseActivity() {
                     tagArrayLocal.add(tagArray(it.data?.id, it.data?.name))
                 }
                 ApiStatus.ERROR -> {
-                    Toasti("Error "+it.message)
+                    Toasti("Error " + it.message)
 
                 }
                 ApiStatus.LOADING -> TODO()
             }
         }
-        addProductViewModel.getSearchedTagLanguage().observe(this)
-        {
-            when(it.status){
+        addProductViewModel.getSearchedTagLanguage().observe(this) {
+            when (it.status) {
                 ApiStatus.SUCCESS -> {
                     if (it.data?.size!! > 0) {
                         if (productDataLocal.data.language.equals(it.data.get(0).name)) {
@@ -635,12 +635,15 @@ class AddProduct : BaseActivity() {
                 ApiStatus.LOADING -> TODO()
             }
         }
-        addProductViewModel.getSearchedTagCategory().observe(this)
-        {
-            when(it.status){
+        addProductViewModel.getSearchedTagCategory().observe(this) {
+            when (it.status) {
                 ApiStatus.SUCCESS -> {
                     if (it.data?.size!! > 0) {
-                        if (cate.get(0).categoriesForListing.categoryDetail.name.equals(it.data.get(0).name)) {
+                        if (cate.get(0).categoriesForListing.categoryDetail.name.equals(
+                                it.data.get(
+                                    0
+                                ).name
+                            )) {
                             tagArrayLocal.add(tagArray(it.data.get(0).id, it.data.get(0).name))
                         } else {
                             addProductViewModel.createWriterNameTag(productDataLocal.data.writer_name.toString())
@@ -778,8 +781,7 @@ class AddProduct : BaseActivity() {
             if (!productDataLocal.data.short_description.isNullOrBlank()) {
                 binding.shortDescriptionTextview.visibility = View.VISIBLE
                 binding.shortDescriptionTextview.text = productDataLocal.data.short_description
-            }
-            /*if(!productDataLocal.data.productType .isNullOrBlank()) {
+            }/*if(!productDataLocal.data.productType .isNullOrBlank()) {
                 Product.addProperty("product_type", (productDataLocal.dataInput.productType))
             }*/
 
@@ -1318,6 +1320,7 @@ class AddProduct : BaseActivity() {
     private fun searchTagToAddLanguage(keyword: String) {
         addProductViewModel.searchTagToAddLangauage(keyword, 1)
     }
+
     private fun searchTagToAddCategory(keyword: String) {
         addProductViewModel.searchTagToAddCategory(keyword, 1)
     }

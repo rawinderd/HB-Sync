@@ -1,28 +1,31 @@
-package com.sikhreader.Interface
+package com.hook2book.hbsync.Interface
 
-import com.example.ProductTagsMain
+
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
+import com.hook2book.hbsync.Model.Categories.CategoriesMain
 import com.hook2book.hbsync.Model.InitialVaribales.InitialVariablesMain
+import com.hook2book.hbsync.Model.NewTag.ApiResponse
+import com.hook2book.hbsync.Model.NewTag.ProductMain
+import com.hook2book.hbsync.Model.NewTag.newTag
+import com.hook2book.hbsync.Model.ProductTags.ProductTagsMain
+import com.hook2book.hbsync.Model.Registration.RegistrationData
+import com.hook2book.hbsync.Model.Registration.RegistrationResponse
+import com.hook2book.hbsync.Model.SearchProduct.SearchProduct
+import com.hook2book.hbsync.Model.SellerData.SellerData
+import com.hook2book.hbsync.Model.SellerData.SellerDataResponseStatus
+import com.hook2book.hbsync.Model.SingleProduct.ProductMainSingle
+import com.hook2book.hbsync.Model.SingleSubOrderDetail.SingleSubOrderDetail
+import com.hook2book.hbsync.Model.SubOrderData.SubOrderData
 import com.hook2book.hbsync.Model.Token.Token
+import com.hook2book.hbsync.Model.UpdatePreStatus.UpdatePreStatus
+import com.hook2book.hbsync.Model.productStatusUpdate.productStatusUpdate
+import com.hook2book.hbsync.Model.subOrderUpdate.subOrderUpdate
+import com.hook2book.hbsync.Model.updateWCProduct.updateWCProduct
 import com.hook2book.hbsync.UtilityClass.BaseValues
-import com.sikhreader.Model.AddProduct.ApiResponse
-import com.sikhreader.Model.Categories.CategoriesMain
-import com.sikhreader.Model.NewTag.newTag
-import com.sikhreader.Model.Registration.RegistrationData
-import com.sikhreader.Model.Registration.RegistrationResponse
-import com.sikhreader.Model.SearchProduct.SearchProduct
-import com.sikhreader.Model.SellerData.SellerData
-import com.sikhreader.Model.SellerData.SellerDataResponseStatus
-import com.sikhreader.Model.SingleProduct.ProductMainSingle
-import com.sikhreader.Model.SingleSubOrderDetail.SingleSubOrderDetail
-import com.sikhreader.Model.SubOrderData.SubOrderData
-import com.sikhreader.Model.UpdatePreStatus.UpdatePreStatus
-import com.sikhreader.Model.addProduct2.ProductMain
-import com.sikhreader.Model.productStatusUpdate.productStatusUpdate
-import com.sikhreader.Model.subOrderUpdate.subOrderUpdate
-import com.sikhreader.Model.updateWCProduct.updateWCProduct
+
+
 import okhttp3.OkHttpClient
 import retrofit2.Response
 import retrofit2.Retrofit

@@ -9,7 +9,7 @@ import android.util.Base64;
 import android.util.Log;
 
 import com.google.gson.Gson;
-import com.sikhreader.Model.SellerData.SellerData;
+import com.hook2book.hbsync.Model.SellerData.SellerData;
 
 import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;

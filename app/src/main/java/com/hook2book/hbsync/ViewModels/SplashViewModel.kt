@@ -1,18 +1,18 @@
-package com.sikhreader.ViewModels
-
+package com.hook2book.hbsync.Model.ViewModels
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.hook2book.hbsync.EnumClasses.ApiResult
 import com.hook2book.hbsync.Model.InitialVaribales.InitialVariablesMain
 import com.hook2book.hbsync.Model.Token.Token
+import com.hook2book.hbsync.Repository.CommonLoginRepo
 import com.hook2book.hbsync.Repository.SplashRepo
-import com.sikhreader.EnumClasses.ApiResult
-import com.sikhreader.Repository.CommonLoginRepo
 import kotlinx.coroutines.launch
 
-class SplashViewModel : ViewModel() {
-    private var commonLoginRepo: CommonLoginRepo = CommonLoginRepo()
+class SplashViewModel(application: Application) : AndroidViewModel(application) {
+    private var commonLoginRepo: CommonLoginRepo = CommonLoginRepo(application)
     private var splashRepo: SplashRepo = SplashRepo()
 
     fun fetchInitialValues() {

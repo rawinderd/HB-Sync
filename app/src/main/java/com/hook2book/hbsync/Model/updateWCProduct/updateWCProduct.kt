@@ -1,5 +1,4 @@
-package com.sikhreader.Model.updateWCProduct
-
+package com.hook2book.hbsync.Model.updateWCProduct
 data class updateWCProduct(
     val _links: Links,
     val attributes: List<Attribute>,

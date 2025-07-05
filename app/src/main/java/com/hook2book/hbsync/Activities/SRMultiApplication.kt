@@ -1,9 +1,7 @@
-package com.sikhreader.srmulti
+package com.hook2book.hbsync
 
 import android.app.Application
 import android.content.Context
-import dagger.Module
-import dagger.hilt.android.HiltAndroidApp
 
 class SRMultiApplication : Application() {
 

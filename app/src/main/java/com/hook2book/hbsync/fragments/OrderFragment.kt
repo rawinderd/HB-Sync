@@ -10,11 +10,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hook2book.hbsync.Activities.SubOrderDetail
+import com.hook2book.hbsync.Adapters.SubOrderListingAdapter
 import com.hook2book.hbsync.R
 import com.hook2book.hbsync.UtilityClass.Preferences
+import com.hook2book.hbsync.ViewModels.PublisherOrderViewModel
 import com.hook2book.hbsync.databinding.FragmentOrderBinding
-import com.sikhreader.Adapters.SubOrderListingAdapter
-import com.sikhreader.ViewModels.PublisherOrderViewModel
+
 class OrderFragment : Fragment(), SubOrderListingAdapter.ItemClickListener {
     private lateinit var binding: FragmentOrderBinding
     private lateinit var publisherOrderViewModel: PublisherOrderViewModel

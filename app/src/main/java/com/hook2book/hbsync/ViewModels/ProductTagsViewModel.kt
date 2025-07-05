@@ -1,24 +1,24 @@
-package com.sikhreader.ViewModels
+package com.hook2book.hbsync.ViewModels
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.ProductTagsMain
-import com.sikhreader.EnumClasses.ApiResult
-import com.sikhreader.Model.NewTag.newTag
-import com.sikhreader.Repository.ProductsTagsRepo
+import com.hook2book.hbsync.EnumClasses.ApiResult
+import com.hook2book.hbsync.Model.NewTag.newTag
+import com.hook2book.hbsync.Model.ProductTags.ProductTagsMain
+import com.hook2book.hbsync.Repository.ProductsTagsRepo
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-class ProductTagsViewModel @Inject constructor() : ViewModel() {
-    var productsTagsRepo = ProductsTagsRepo()
+class ProductTagsViewModel(application: Application) : AndroidViewModel(application) {
+    var productsTagsRepo = ProductsTagsRepo(application)
 
-    fun fetchTagList(keyword:String, pageNumber: Int) {
+    fun fetchTagList(keyword: String, pageNumber: Int) {
         viewModelScope.launch {
             productsTagsRepo.getTagList(keyword, pageNumber)
         }
     }
+
     /*suspend fun FetchTagByKeyword(keyword:String, pageNumber: Int)
     {
         productsTagsRepo.getTagList(keyword, pageNumber)
@@ -33,6 +33,7 @@ class ProductTagsViewModel @Inject constructor() : ViewModel() {
             productsTagsRepo.createNewTag(newTagText)
         }
     }
+
     fun getNewTag(): LiveData<ApiResult<newTag>> {
         return productsTagsRepo.apiResultNewTag
 

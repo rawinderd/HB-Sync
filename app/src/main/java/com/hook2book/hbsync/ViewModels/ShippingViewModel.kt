@@ -1,10 +1,8 @@
-package com.sikhreader.ViewModels
+package com.hook2book.hbsync.Model.ViewModels
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.sikhreader.Repository.ShippingRepo
-import kotlinx.coroutines.launch
+import com.hook2book.hbsync.Repository.ShippingRepo
 
-class ShippingViewModel: ViewModel() {
-    var shippingRepo: ShippingRepo=ShippingRepo()
+class ShippingViewModel : ViewModel() {
+    var shippingRepo: ShippingRepo = ShippingRepo()
 }

@@ -14,13 +14,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.hook2book.hbsync.Adapters.ProductCategoriesAdapter
+import com.hook2book.hbsync.Adapters.ProductTagsAdapter
+import com.hook2book.hbsync.Model.NewTag.CategoriesForListing
+import com.hook2book.hbsync.Model.NewTag.RemovedCategoryChipMain
 import com.hook2book.hbsync.R
 import com.hook2book.hbsync.UtilityClass.BaseActivity
+import com.hook2book.hbsync.ViewModels.ProductCategoriesViewModel
 import com.hook2book.hbsync.databinding.ActivityProductCategoriesBinding
-import com.sikhreader.Adapters.ProductTagsAdapter
-import com.sikhreader.Model.Categories.CategoriesForListing
-import com.sikhreader.Model.Categories.RemovedCategoryChipMain
-import com.sikhreader.ViewModels.ProductCategoriesViewModel
+
 import java.io.Serializable
 
 class ProductCategories : BaseActivity(), ProductTagsAdapter.ItemClickListener {

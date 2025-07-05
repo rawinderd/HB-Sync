@@ -1,5 +1,4 @@
-package com.sikhreader.Model.SearchProduct
-
+package com.hook2book.hbsync.Model.SearchProduct
 data class DataOuter(
     val current_page: Int,
     val `data`: List<Data>,

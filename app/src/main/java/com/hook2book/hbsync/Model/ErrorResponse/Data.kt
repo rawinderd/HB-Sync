@@ -1,4 +1,5 @@
-package com.sikhreader.Model.ErrorResponse
+package com.hook2book.hbsync.Model.ErrorResponse
+
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName

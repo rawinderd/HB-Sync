@@ -87,7 +87,7 @@ CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()S
         {
             if (title.equals("Home"))
             {
-                toolbar.setLogo(getResources().getDrawable(R.mipmap.logofortitlecopy));
+                toolbar.setLogo(getResources().getDrawable(R.mipmap.h2bsync));
 
             } else
             {

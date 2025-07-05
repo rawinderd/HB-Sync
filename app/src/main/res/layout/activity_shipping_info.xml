@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ShippingInfo">
+    tools:context=".Activities.ShippingInfo">
     <include
         android:id="@+id/shipping_info_toolbar"
         layout="@layout/toolbar"

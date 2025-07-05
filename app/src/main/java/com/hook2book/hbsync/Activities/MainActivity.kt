@@ -16,19 +16,19 @@ import androidx.navigation.ui.navigateUp
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import com.hook2book.hbsync.Activities.SellerDataForm
+import com.hook2book.hbsync.EnumClasses.ApiStatus
 import com.hook2book.hbsync.R
 import com.hook2book.hbsync.UtilityClass.BaseActivity
 import com.hook2book.hbsync.UtilityClass.Preferences
 import com.hook2book.hbsync.UtilityClass.Prevalent
+import com.hook2book.hbsync.ViewModels.MainViewModel
 import com.hook2book.hbsync.databinding.ActivityMainBinding
+import com.hook2book.hbsync.fragments.CouponFragment
+import com.hook2book.hbsync.fragments.HomeFragment
 import com.hook2book.hbsync.fragments.OrderFragment
-import com.sikhreader.EnumClasses.ApiStatus
-import com.sikhreader.ViewModels.MainViewModel
-import com.sikhreader.fragments.CouponFragment
-import com.sikhreader.fragments.HomeFragment
+import com.hook2book.hbsync.fragments.ProductsFragment
+import com.hook2book.hbsync.fragments.UserFragment
 
-import com.sikhreader.fragments.ProductsFragment
-import com.sikhreader.fragments.UserFragment
 import dagger.hilt.android.AndroidEntryPoint
 import io.paperdb.Paper
 

@@ -1,4 +1,4 @@
-package com.sikhreader.Model.SingleSubOrderDetail
+package com.hook2book.hbsync.Model.SingleSubOrderDetail
 
 data class DataOuter(
     val address_1: String,

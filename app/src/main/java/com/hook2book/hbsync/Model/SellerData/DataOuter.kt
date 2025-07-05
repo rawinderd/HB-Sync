@@ -1,4 +1,4 @@
-package com.sikhreader.Model.SellerData
+package com.hook2book.hbsync.Model.SellerData
 
 data class DataOuter(
     val name: String,

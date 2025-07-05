@@ -1,8 +1,9 @@
-package com.example
+package com.hook2book.hbsync.Model.ProductTags
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-import com.sikhreader.Model.CommonModels.Links
+import com.hook2book.hbsync.Model.CommonModels.Links
+
 import java.io.Serializable
 
 class ProductTagsMain:Serializable {

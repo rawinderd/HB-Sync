@@ -1,12 +1,12 @@
-package com.sikhreader.ViewModels
+package com.hook2book.hbsync.Model.ViewModels
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.sikhreader.EnumClasses.ApiResult
-import com.sikhreader.Model.SellerData.DataOuter
-import com.sikhreader.Model.SellerData.SellerDataResponseStatus
-import com.sikhreader.Repository.SellerDataFormRepo
+import com.hook2book.hbsync.EnumClasses.ApiResult
+import com.hook2book.hbsync.Model.SellerData.DataOuter
+import com.hook2book.hbsync.Model.SellerData.SellerDataResponseStatus
+import com.hook2book.hbsync.Repository.SellerDataFormRepo
 import kotlinx.coroutines.launch
 
 class SellerDataFormViewModel : ViewModel() {
@@ -16,8 +16,8 @@ class SellerDataFormViewModel : ViewModel() {
             sellerDataFormRepo.insertSellerData(sellerData)
         }
     }
-    fun sellerDataStatus(): MutableLiveData<ApiResult<SellerDataResponseStatus>>
-    {
+
+    fun sellerDataStatus(): MutableLiveData<ApiResult<SellerDataResponseStatus>> {
         return sellerDataFormRepo.apiSellerDataResponseStatus
     }
 

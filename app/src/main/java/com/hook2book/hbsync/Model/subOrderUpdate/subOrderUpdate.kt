@@ -1,4 +1,4 @@
-package com.sikhreader.Model.subOrderUpdate
+package com.hook2book.hbsync.Model.subOrderUpdate
 
 data class subOrderUpdate(
     val message: String,

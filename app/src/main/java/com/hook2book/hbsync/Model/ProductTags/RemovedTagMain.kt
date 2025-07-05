@@ -1,6 +1,6 @@
-package com.sikhreader.Model.ProductTags
+package com.hook2book.hbsync.Model.ProductTags
 
-import com.example.ProductTagsMain
+
 import java.io.Serializable
 
 class RemovedTagMain(var ChipPosition: Int, var tag: ProductTagsMain, var TagPosition: Int):Serializable{

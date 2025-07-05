@@ -1,13 +1,14 @@
-package com.sikhreader.Repository
+package com.hook2book.hbsync.Repository
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
-import com.sikhreader.EnumClasses.ApiResult
-import com.sikhreader.Interface.RetroService
-import com.sikhreader.Model.SellerData.DataOuter
-import com.sikhreader.Model.SellerData.SellerData
-import com.sikhreader.Model.SellerData.SellerDataResponseStatus
+import com.hook2book.hbsync.EnumClasses.ApiResult
+import com.hook2book.hbsync.Interface.RetroService
+import com.hook2book.hbsync.Model.SellerData.DataOuter
+import com.hook2book.hbsync.Model.SellerData.SellerData
+import com.hook2book.hbsync.Model.SellerData.SellerDataResponseStatus
+
 
 class SellerDataFormRepo {
     var apiSellerDataResponseStatus: MutableLiveData<ApiResult<SellerDataResponseStatus>> =

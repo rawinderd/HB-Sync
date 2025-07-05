@@ -10,16 +10,17 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.hook2book.hbsync.Activities.SellerDataForm
+import com.hook2book.hbsync.EnumClasses.ApiStatus
+import com.hook2book.hbsync.Model.Registration.Billing
+import com.hook2book.hbsync.Model.Registration.RegistrationData
+import com.hook2book.hbsync.Model.Registration.Shipping
 import com.hook2book.hbsync.R
 import com.hook2book.hbsync.UtilityClass.AppUtils
 import com.hook2book.hbsync.UtilityClass.BaseActivity
 import com.hook2book.hbsync.UtilityClass.Prevalent
+import com.hook2book.hbsync.ViewModels.RegisterViewModel
 import com.hook2book.hbsync.databinding.ActivityRegisterBinding
-import com.sikhreader.EnumClasses.ApiStatus
-import com.sikhreader.Model.Registration.Billing
-import com.sikhreader.Model.Registration.RegistrationData
-import com.sikhreader.Model.Registration.Shipping
-import com.sikhreader.ViewModels.RegisterViewModel
+
 
 
 import io.paperdb.Paper

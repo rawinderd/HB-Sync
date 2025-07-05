@@ -3,9 +3,10 @@ package com.hook2book.hbsync.Repository
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
+import com.hook2book.hbsync.EnumClasses.ApiResult
+import com.hook2book.hbsync.Interface.RetroService
 import com.hook2book.hbsync.Model.InitialVaribales.InitialVariablesMain
-import com.sikhreader.EnumClasses.ApiResult
-import com.sikhreader.Interface.RetroService
+
 
 class SplashRepo {
     var apiResultInitialValues: MutableLiveData<ApiResult<InitialVariablesMain>> = MutableLiveData()

@@ -1,4 +1,4 @@
-package com.sikhreader.Model.addProduct2
+package com.hook2book.hbsync.Model.NewTag
 
 data class Tag(
     val created_at: String,

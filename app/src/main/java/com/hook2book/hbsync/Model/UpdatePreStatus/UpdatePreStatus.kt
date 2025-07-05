@@ -1,4 +1,4 @@
-package com.sikhreader.Model.UpdatePreStatus
+package com.hook2book.hbsync.Model.UpdatePreStatus
 
 data class UpdatePreStatus(
     val message: String,

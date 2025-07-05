@@ -1,4 +1,4 @@
-package com.sikhreader.Model.productStatusUpdate
+package com.hook2book.hbsync.Model.productStatusUpdate
 
 data class productStatusUpdate(
     val message: String

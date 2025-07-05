@@ -1,4 +1,4 @@
-package com.sikhreader.UtilityClass
+package com.hook2book.hbsync.UtilityClass
 
 import com.google.gson.Gson
 import com.google.gson.JsonArray
