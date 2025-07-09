@@ -6,86 +6,70 @@
     <group
         android:id="@+id/main_menu"
         android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_product_edit_list"
-            android:icon="@drawable/ic_baseline_add_24"
-            android:iconTint="@android:color/white"
-            android:title="Product Edit List" />
-        <item
-            android:id="@+id/nav_add_product_to_publishers"
-            android:icon="@drawable/ic_baseline_add_24"
-            android:iconTint="@android:color/white"
-            android:title="Publisher Product Map" />
+
         <item
             android:id="@+id/nav_account"
             android:icon="@drawable/ic_baseline_add_24"
             android:iconTint="@android:color/white"
             android:title="Account" />
         <item
-            android:id="@+id/nav_address_book"
-            android:icon="@drawable/ic_baseline_add_24"
-            android:iconTint="@android:color/white"
-            android:title="Address Book" />
-    </group>
-    <group
-        android:id="@+id/main_menu_categories"
-        android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_punjabi"
-            android:icon="@drawable/ic_baseline_add_24"
-            android:iconTint="@android:color/white"
-            android:title="Punjabi" />
-        <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/ic_baseline_add_24"
             android:iconTint="@android:color/white"
             android:title="Logout" />
-        <item
-            android:id="@+id/nav_english"
-            android:icon="@drawable/ic_baseline_add_24"
-            android:iconTint="@android:color/white"
-            android:title="English" />
-        <item
-            android:id="@+id/nav_children"
-            android:icon="@drawable/ic_baseline_add_24"
-            android:iconTint="@android:color/white"
-            android:title="Children" />
-        <item
-            android:id="@+id/nav_Autherwise"
-            android:icon="@drawable/ic_baseline_add_24"
-            android:iconTint="@android:color/white"
-            android:title="Author List" />
-        <item
-            android:id="@+id/nav_Special"
-            android:icon="@drawable/ic_baseline_add_24"
-            android:iconTint="@android:color/white"
-            android:title="Special" />
-
-
-    </group>
-    <group>
-        <item
-            android:id="@+id/nav_settings"
-            android:icon="@drawable/ic_baseline_add_24"
-            android:iconTint="@android:color/white"
-            android:title="Settings" />
-        <item
-            android:id="@+id/nav_contact_us"
-            android:icon="@drawable/ic_baseline_add_24"
-            android:iconTint="@android:color/white"
-            android:title="Contact Us" />
-
-    </group>
-    <group
-        android:id="@+id/main_menu_sample"
-        android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_testing3"
-            android:icon="@drawable/ic_baseline_add_24"
-            android:iconTint="@android:color/white"
-            android:title="Forgot Password" />
     </group>
 
+    <!-- <group
+         android:id="@+id/main_menu_categories"
+         android:checkableBehavior="single">
+
+
+         <item
+             android:id="@+id/nav_english"
+             android:icon="@drawable/ic_baseline_add_24"
+             android:iconTint="@android:color/white"
+             android:title="English" />
+         <item
+             android:id="@+id/nav_children"
+             android:icon="@drawable/ic_baseline_add_24"
+             android:iconTint="@android:color/white"
+             android:title="Children" />
+         <item
+             android:id="@+id/nav_Autherwise"
+             android:icon="@drawable/ic_baseline_add_24"
+             android:iconTint="@android:color/white"
+             android:title="Author List" />
+         <item
+             android:id="@+id/nav_Special"
+             android:icon="@drawable/ic_baseline_add_24"
+             android:iconTint="@android:color/white"
+             android:title="Special" />
+
+
+     </group>
+     <group>
+         <item
+             android:id="@+id/nav_settings"
+             android:icon="@drawable/ic_baseline_add_24"
+             android:iconTint="@android:color/white"
+             android:title="Settings" />
+         <item
+             android:id="@+id/nav_contact_us"
+             android:icon="@drawable/ic_baseline_add_24"
+             android:iconTint="@android:color/white"
+             android:title="Contact Us" />
+
+     </group>
+     <group
+         android:id="@+id/main_menu_sample"
+         android:checkableBehavior="single">
+         <item
+             android:id="@+id/nav_testing3"
+             android:icon="@drawable/ic_baseline_add_24"
+             android:iconTint="@android:color/white"
+             android:title="Forgot Password" />
+     </group>
+ -->
     <group
         android:id="@+id/main_menu_extras"
         android:checkableBehavior="single">
@@ -97,4 +81,5 @@
 
     </group>
 </menu>
+
 

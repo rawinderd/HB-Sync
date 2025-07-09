@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/brown"
     android:fitsSystemWindows="true"
-    tools:context=".MainActivity">
+    tools:context=".Activities.MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -51,7 +51,18 @@
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_home"
         app:menu="@menu/activity_home_drawer">
-
-
+        <TextView
+            android:id="@+id/version_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:paddingBottom="5sp"
+            android:text="Version"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:layout_gravity="bottom" />
     </com.google.android.material.navigation.NavigationView>
+
+
+
 </androidx.drawerlayout.widget.DrawerLayout>

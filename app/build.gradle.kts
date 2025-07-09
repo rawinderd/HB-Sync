@@ -11,8 +11,8 @@ android {
         applicationId = "com.hook2book.hbsync"
         minSdk = 26
         targetSdk = 35
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 4
+        versionName = "1.0.4"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -59,4 +59,6 @@ dependencies {
     implementation(libs.cardview)
     implementation (libs.retrofit)
     implementation (libs.converter.gson)
+    implementation(libs.app.update)
+    implementation(libs.app.update.ktx)
 }
