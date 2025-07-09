@@ -71,6 +71,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             Toasti("User Clicked")
             true
         }
+
         cMain = findViewById<View>(R.id.drawer_layout)
         try {
             val pInfo: PackageInfo =
