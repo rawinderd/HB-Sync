@@ -137,7 +137,7 @@ class ProductCategories : BaseActivity(), ProductTagsAdapter.ItemClickListener {
 
     fun addRemovedChipToCategoryList(categoriesForListing: CategoriesForListing, position: Int) {
         productCategoriesLocal.add(position, categoriesForListing)
-        Toasti("Position " + position)
+        //Toasti("Position " + position)
         adapter.addCategorytoCategoryList(position, categoriesForListing)
     }
 

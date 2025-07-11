@@ -129,7 +129,7 @@ class ProductTags2 : BaseActivity(), ProductTagsAdapter.ItemClickListener {
         productTagsViewModel.getNewTag().observe(this) {
             when (it.status) {
                 ApiStatus.SUCCESS -> {
-                    Toasti("Tag is is " + it.data?.id.toString())
+                    //Toasti("Tag is is " + it.data?.id.toString())
                     chipGroup.addChipSearch(this, it.data!!)
                 }
                 ApiStatus.ERROR -> {

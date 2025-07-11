@@ -5,6 +5,8 @@ import android.content.IntentSender.SendIntentException
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
@@ -67,11 +69,14 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         setToolbar(toolbar, false, "Home", true)
         bottomBar = findViewById(R.id.bottomNav)
         mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        mainViewModel.fetchUserData(Paper.book().read<String>(Prevalent.PubId).toString())
+        Toasti(Paper.book().read<String>(Prevalent.PubId).toString())
         bottomBar.menu.getItem(4).setOnMenuItemClickListener {
-            Toasti("User Clicked")
+           // Toasti("User Clicked")
             true
         }
 
+        // update system
         cMain = findViewById<View>(R.id.drawer_layout)
         try {
             val pInfo: PackageInfo =
@@ -159,15 +164,16 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         mainViewModel.getUserData().observe(this) {
             when (it.status) {
                 ApiStatus.SUCCESS -> {
+                    Toasti("Data Fetched Successfully")
                     bottomBar.menu.getItem(4).setTitle(it.data?.data_outer?.get(0)?.name)
                     Preferences.saveAccountInfo(this, it.data)
                 }
                 ApiStatus.ERROR -> {
-                    if (it.message == "Record not found") {
+                  //if (it.message == "Record not found") {
                         Toasti("Please Enter Account Information")
                         val intent = Intent(this, SellerDataForm::class.java)
                         startActivity(intent)
-                    }
+                   // }
                     //Toasti("Error in Fetching Data")
                 }
                 ApiStatus.LOADING -> TODO()
@@ -189,6 +195,17 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         }
 
 
+    }
+    private var doubleBackToExitPressedOnce = false
+    override fun onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed()
+            return
+        }
+
+        this.doubleBackToExitPressedOnce = true
+        Toast.makeText(this, "Please click BACK again to Exit", Toast.LENGTH_SHORT).show()
+        Handler(Looper.getMainLooper()).postDelayed(Runnable { doubleBackToExitPressedOnce = false }, 2000)
     }
 
     override fun onSupportNavigateUp(): Boolean {

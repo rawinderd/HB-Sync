@@ -17,10 +17,10 @@ class SettingActivity : BaseActivity() {
         val toolbar: Toolbar = findViewById(R.id.toolbar_simple)
         setToolbar(toolbar, true, "Settings", false)
         binding.stopProductSwitch.setOnClickListener(View.OnClickListener {
-            Toasti("update api for Stop Product & Main Product")
+            Toasti("Stop Product Functionality is In Process")
         })
         binding.trashProductText2.setOnClickListener(View.OnClickListener {
-            Toasti("Trash Product API Called and Main Product Table")
+            Toasti("Trash Product Functionality is In Process")
         })
 
     }

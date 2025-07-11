@@ -87,7 +87,6 @@ class AddProduct : BaseActivity() {
                     SetDataAndHideEmptyViews(it.data)
                     initTextChanger()
                     currentState = it.data.data.status.toString()
-                    Toasti(getStatusString(currentState))
                 }
                 ApiStatus.ERROR -> {
                     Toasti(it.message)
@@ -134,7 +133,7 @@ class AddProduct : BaseActivity() {
         addProductViewModel.updateProductResPonse().observe(this) {
             when (it.status) {
                 ApiStatus.SUCCESS -> {
-                    Toasti("Product Updated Successfully Pre Table")
+                    //Toasti("Product Updated Successfully Pre Table")
                     refreshPage(productId)
                     saveShareBtn.text = "Share"
                 }
@@ -146,7 +145,7 @@ class AddProduct : BaseActivity() {
         addProductViewModel.updateStatusInWCResponse().observe(this) {
             when (it.status) {
                 ApiStatus.SUCCESS -> {
-                    Toasti("Product Updated Successfully WC")
+                    Toasti("Product Updated Successfully")
                     refreshPage(productId)
                 }
                 ApiStatus.ERROR -> TODO()
@@ -161,7 +160,7 @@ class AddProduct : BaseActivity() {
                     refreshPage(productId)
                 }
                 ApiStatus.ERROR -> {
-                    Toasti("Product Not Updated Successfully")
+                    Toasti("Product Not Updated")
                 }
                 ApiStatus.LOADING -> TODO()
             }
@@ -584,12 +583,12 @@ class AddProduct : BaseActivity() {
                 ApiStatus.SUCCESS -> {
                     if (it.data?.size!! > 0) {
                         if (productDataLocal.data.writer_name.equals(it.data.get(0).name)) {
-                            Toasti("Matched name=" + it.data.get(0).name + " id=" + it.data.get(0).id)
+                            //Toasti("Matched name=" + it.data.get(0).name + " id=" + it.data.get(0).id)
                             tagArrayLocal.add(tagArray(it.data.get(0).id, it.data.get(0).name))
                         } else {
-                            Toasti(
+                           /* Toasti(
                                 "Not Matched name=" + it.data.get(0).name + " id=" + it.data.get(0).id
-                            )
+                            )*/
                             addProductViewModel.createWriterNameTag(productDataLocal.data.writer_name.toString())
                         }
 
@@ -1122,7 +1121,7 @@ class AddProduct : BaseActivity() {
                             addProductViewModel.updateStatusInWC(
                                 "pending", productDataLocal.data.wc_product_id.toString()
                             )
-                            Toasti(productDataLocal.data.wc_product_id.toString())
+                           // Toasti(productDataLocal.data.wc_product_id.toString())
                         } else {
                             if (productDataLocal.data.status == "6") {
                                 if (productDataLocal.data.wc_product_id.isNullOrBlank()) {

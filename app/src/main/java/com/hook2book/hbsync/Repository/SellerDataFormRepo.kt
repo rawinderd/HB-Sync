@@ -54,6 +54,7 @@ class SellerDataFormRepo {
     }
 
     suspend fun fetchUserData(pubId: String) {
+        Log.i("TAG", "fetchUserData: called")
         val params = HashMap<String, String>()
         params.put("wc_id", pubId)
         val response = RetroService.retroInstance.getUserData(params)
@@ -71,6 +72,9 @@ class SellerDataFormRepo {
             Log.i("TAG", "fetchParentCategories: " + response.body())
 
         } else {
+            if (response.isSuccessful) {
+                Log.e("Success Rawinder01 pub data", Gson().toJson(response.body()))
+            } else Log.e("UnSuccess Rawinder01 pub data", Gson().toJson(response.errorBody()))
             val errorMsg = response.errorBody()?.string()
             response.errorBody()
                 ?.close()  // remember to close it after getting the stream of error body
