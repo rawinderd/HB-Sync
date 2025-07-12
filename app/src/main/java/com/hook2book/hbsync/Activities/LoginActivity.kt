@@ -1,5 +1,6 @@
 package com.hook2book.hbsync.Activities
 
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.os.SystemClock
@@ -21,6 +22,7 @@ class LoginActivity : BaseActivity() {
     private lateinit var loginViewModel: LoginViewModel
     private var mLastClickTime: Long = 0
     private lateinit var userId: String
+    private lateinit var dialog: Dialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +31,8 @@ class LoginActivity : BaseActivity() {
         initComponents()
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE or WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
         Paper.init(applicationContext)
+        dialog = DialogGen()
+
         binding.loginBtn.setOnClickListener(View.OnClickListener {
             if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
                 return@OnClickListener
@@ -39,6 +43,7 @@ class LoginActivity : BaseActivity() {
         loginViewModel.getLoginResponse().observe(this) {
             when (it.status) {
                 ApiStatus.SUCCESS -> {
+                    dialog.dismiss()
                     Toasti("User Login Successfully")
                     Paper.book().write(
                         Prevalent.UserPhoneKey, binding.loginPhoneNumberInput.text.toString()
@@ -97,6 +102,8 @@ class LoginActivity : BaseActivity() {
         } else {
             try {
                 loginViewModel.allowAccess(phone, password)
+                dialog.show()
+
             } catch (e: JSONException) {
                 throw RuntimeException(e)
             }

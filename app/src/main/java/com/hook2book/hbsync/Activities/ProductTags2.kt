@@ -1,6 +1,7 @@
 package com.hook2book.hbsync.Activities
 
 import android.app.Activity
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -50,6 +51,7 @@ class ProductTags2 : BaseActivity(), ProductTagsAdapter.ItemClickListener {
     lateinit var addTag: TextView
     var keyword: String = "None"
     var textErasedStatus: Boolean = false
+    private lateinit var dialog: Dialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,6 +63,7 @@ class ProductTags2 : BaseActivity(), ProductTagsAdapter.ItemClickListener {
         val toolbar: Toolbar = findViewById(R.id.toolbar_simple)
         setToolbar(toolbar, true, "Tags", false)
         setUpRecycler()
+        dialog = DialogGen()
         addTag = findViewById(R.id.add_tag_input_inner)
         addTag.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -86,6 +89,7 @@ class ProductTags2 : BaseActivity(), ProductTagsAdapter.ItemClickListener {
                                 keyword = it
                                 resetData()
                                 productTagsViewModel.fetchTagList(keyword, 1)
+                                dialog.show()
                             }
                         }
                     }
@@ -95,6 +99,7 @@ class ProductTags2 : BaseActivity(), ProductTagsAdapter.ItemClickListener {
                     keyword = "None"
                     textErasedStatus = false
                     productTagsViewModel.fetchTagList(keyword, 1)
+                    dialog.show()
                 }
             }
 
@@ -108,9 +113,11 @@ class ProductTags2 : BaseActivity(), ProductTagsAdapter.ItemClickListener {
 
         adapter.setData(productTagLocal)
         productTagsViewModel.fetchTagList(keyword, 1)
+        dialog.show()
         productTagsViewModel.getTagList().observe(this) {
             when (it.status) {
                 ApiStatus.SUCCESS -> {
+                    dialog.dismiss()
                     adapter.setData(it.data)
                     totalPages = (it.totalPages)?.toIntOrNull()
                     productTagLocal.addAll(it.data!!)
@@ -129,7 +136,6 @@ class ProductTags2 : BaseActivity(), ProductTagsAdapter.ItemClickListener {
         productTagsViewModel.getNewTag().observe(this) {
             when (it.status) {
                 ApiStatus.SUCCESS -> {
-                    //Toasti("Tag is is " + it.data?.id.toString())
                     chipGroup.addChipSearch(this, it.data!!)
                 }
                 ApiStatus.ERROR -> {
@@ -185,6 +191,7 @@ class ProductTags2 : BaseActivity(), ProductTagsAdapter.ItemClickListener {
     }
 
     private fun fetchTags() {
+        dialog.show()
         pageNo = pageNo + 1
         productTagsViewModel.fetchTagList(keyword, pageNo)
     }

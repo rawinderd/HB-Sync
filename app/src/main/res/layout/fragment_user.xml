@@ -2,12 +2,426 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.sikhreader.fragments.UserFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.hook2book.hbsync.fragments.UserFragment">
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="User Frgament"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/first_name_last_name_aa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Guest"
+                android:textColor="#000000"
+                android:textColorHint="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="@id/guideline51"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/insider_aa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="4dp"
+                android:text="Insider"
+                android:textColor="#000000"
+                android:textColorHint="@color/black"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@id/guideline51"
+                app:layout_constraintTop_toBottomOf="@id/first_name_last_name_aa" />
+
+            <Button
+                android:id="@+id/name_edit_button"
+                style="@style/TextButtonWithIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:icon="@drawable/baseline_edit_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/first_name_last_name_aa" />
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/divider1_aa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:layout_constraintTop_toBottomOf="@id/insider_aa" />
+
+            <Button
+                android:id="@+id/order_button_aa"
+                style="@style/OutlinedButtonWithIcon"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="10dp"
+                android:gravity="start|center_vertical"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="Orders"
+                android:textAllCaps="false"
+                app:icon="@drawable/baseline_edit_24"
+                app:layout_constraintEnd_toStartOf="@+id/coupons_button_aa"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider1_aa" />
+
+            <Button
+                android:id="@+id/coupons_button_aa"
+                style="@style/OutlinedButtonWithIcon"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="20dp"
+                android:gravity="start|center_vertical"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="Coupons"
+                android:textAllCaps="false"
+                app:icon="@drawable/baseline_edit_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toEndOf="@+id/order_button_aa"
+                app:layout_constraintTop_toTopOf="@id/order_button_aa" />
+
+            <Button
+                android:id="@+id/help_center_button_aa"
+                style="@style/OutlinedButtonWithIcon"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:gravity="start|center_vertical"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="Help Center"
+                android:textAllCaps="false"
+                app:icon="@drawable/baseline_edit_24"
+                app:layout_constraintEnd_toStartOf="@+id/insider_button_aa"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/order_button_aa" />
+
+            <Button
+                android:id="@+id/insider_button_aa"
+                style="@style/OutlinedButtonWithIcon"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="20dp"
+                android:gravity="start|center_vertical"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="Insider"
+                android:textAllCaps="false"
+                app:icon="@drawable/baseline_edit_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toEndOf="@+id/help_center_button_aa"
+                app:layout_constraintTop_toTopOf="@id/help_center_button_aa" />
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/divider2_aa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:layout_constraintTop_toBottomOf="@id/help_center_button_aa" />
+
+            <TextView
+                android:id="@+id/manage_account_aa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Manage Account"
+                android:textColor="#000000"
+                android:textColorHint="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="@id/guideline51"
+                app:layout_constraintTop_toBottomOf="@id/divider2_aa" />
+
+            <TextView
+                android:id="@+id/manage_account_description_aa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Your account Details and Saved Addresses"
+                android:textColor="#000000"
+                android:textColorHint="@color/black"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@id/guideline51"
+                app:layout_constraintTop_toBottomOf="@id/manage_account_aa" />
+
+            <Button
+                android:id="@+id/manage_account_icon_button"
+                style="@style/TextButtonWithIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:icon="@drawable/baseline_edit_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/manage_account_aa" />
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/divider3_aa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:layout_constraintTop_toBottomOf="@id/manage_account_description_aa" />
+
+            <TextView
+                android:id="@+id/settings_aa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Settings"
+                android:textColor="#000000"
+                android:textColorHint="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="@id/guideline51"
+                app:layout_constraintTop_toBottomOf="@id/divider3_aa" />
+
+            <TextView
+                android:id="@+id/settings_description_aa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Manage Notifications"
+                android:textColor="#000000"
+                android:textColorHint="@color/black"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@id/guideline51"
+                app:layout_constraintTop_toBottomOf="@id/settings_aa" />
+
+            <Button
+                android:id="@+id/settings_icon_aa"
+                style="@style/TextButtonWithIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:icon="@drawable/baseline_edit_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/settings_aa" />
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/divider4_aa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:layout_constraintTop_toBottomOf="@id/settings_description_aa" />
+
+            <TextView
+                android:id="@+id/manage_address_aa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Manage Address"
+                android:textColor="#000000"
+                android:textColorHint="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="@id/guideline51"
+                app:layout_constraintTop_toBottomOf="@id/divider4_aa" />
+
+            <TextView
+                android:id="@+id/manage_address_description_aa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Change or Delete Address"
+                android:textColor="#000000"
+                android:textColorHint="@color/black"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@id/guideline51"
+                app:layout_constraintTop_toBottomOf="@id/manage_address_aa" />
+
+            <Button
+                android:id="@+id/manage_address_icon_aa"
+                style="@style/TextButtonWithIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:icon="@drawable/baseline_edit_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/manage_address_aa" />
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/divider5_aa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:layout_constraintTop_toBottomOf="@id/manage_address_description_aa" />
+
+            <TextView
+                android:id="@+id/wishlist_aa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Wishlist"
+                android:textColor="#000000"
+                android:textColorHint="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="@id/guideline51"
+                app:layout_constraintTop_toBottomOf="@id/divider5_aa" />
+
+            <TextView
+                android:id="@+id/wishlist_description_aa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Your Most Loved books"
+                android:textColor="#000000"
+                android:textColorHint="@color/black"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@id/guideline51"
+                app:layout_constraintTop_toBottomOf="@id/wishlist_aa" />
+
+            <Button
+                android:id="@+id/wishlist_icon_aa"
+                style="@style/TextButtonWithIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:icon="@drawable/baseline_edit_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/wishlist_aa" />
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/divider6_aa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:layout_constraintTop_toBottomOf="@id/wishlist_description_aa" />
+
+            <TextView
+                android:id="@+id/payment_aa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Payments"
+                android:textColor="#000000"
+                android:textColorHint="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="@id/guideline51"
+                app:layout_constraintTop_toBottomOf="@id/divider6_aa" />
+
+            <TextView
+                android:id="@+id/payment_description_aa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="View Balance and Saved Payments "
+                android:textColor="#000000"
+                android:textColorHint="@color/black"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@id/guideline51"
+                app:layout_constraintTop_toBottomOf="@id/payment_aa" />
+
+            <Button
+                android:id="@+id/payment_icon_aa"
+                style="@style/TextButtonWithIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:icon="@drawable/baseline_edit_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/payment_aa" />
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/divider7_aa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:layout_constraintTop_toBottomOf="@id/payment_description_aa" />
+
+            <TextView
+                android:id="@+id/faq_aa"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="start|center_vertical"
+                android:text="FAQs"
+                app:layout_constraintEnd_toEndOf="@id/guideline52"
+                app:layout_constraintStart_toStartOf="@id/guideline51"
+                app:layout_constraintTop_toTopOf="@id/divider7_aa" />
+
+            <Button
+                android:id="@+id/about_us_aa"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="start|center_vertical"
+                android:text="About Us"
+                app:layout_constraintEnd_toEndOf="@id/guideline52"
+                app:layout_constraintStart_toStartOf="@id/guideline51"
+                app:layout_constraintTop_toBottomOf="@id/faq_aa" />
+
+            <Button
+                android:id="@+id/terms_of_use_aa"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="start|center_vertical"
+                android:text="Terms of Use"
+                app:layout_constraintEnd_toEndOf="@id/guideline52"
+                app:layout_constraintStart_toStartOf="@id/guideline51"
+                app:layout_constraintTop_toBottomOf="@id/about_us_aa" />
+
+            <Button
+                android:id="@+id/privacy_policy_aa"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="start|center_vertical"
+                android:text="Privacy Policy"
+                app:layout_constraintEnd_toEndOf="@id/guideline52"
+                app:layout_constraintStart_toStartOf="@id/guideline51"
+                app:layout_constraintTop_toBottomOf="@id/terms_of_use_aa" />
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/divider8_aa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:layout_constraintTop_toBottomOf="@id/privacy_policy_aa" />
+            <Button
+                android:id="@+id/logout_aa"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/red"
+                android:shadowColor="@color/red"
+                android:text="Logout"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                app:strokeColor="@color/red"
+                app:layout_constraintStart_toStartOf="@id/guideline51"
+                app:layout_constraintEnd_toEndOf="@id/guideline52"
+                app:layout_constraintTop_toBottomOf="@id/divider8_aa" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline51"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent=".05" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline52"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent=".95" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </FrameLayout>

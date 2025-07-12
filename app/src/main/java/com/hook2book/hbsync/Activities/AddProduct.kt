@@ -1,6 +1,7 @@
 package com.hook2book.hbsync.Activities
 
 
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
@@ -51,6 +52,7 @@ class AddProduct : BaseActivity() {
     private lateinit var productType: String
     private lateinit var productId: String
     private lateinit var currentState: String
+    private lateinit var dialog: Dialog
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -76,6 +78,7 @@ class AddProduct : BaseActivity() {
                 productType = "oldProduct"
                 hideAllViews()
                 if (productId != null) {
+                    dialog.show()
                     addProductViewModel.fetchSingleProductData(productId)
                 }
             }
@@ -83,12 +86,14 @@ class AddProduct : BaseActivity() {
         addProductViewModel.addSingleProductResPonse().observe(this) {
             when (it.status) {
                 ApiStatus.SUCCESS -> {
+                    dialog.dismiss()
                     fetchedProductData = it.data!!
                     SetDataAndHideEmptyViews(it.data)
                     initTextChanger()
                     currentState = it.data.data.status.toString()
                 }
                 ApiStatus.ERROR -> {
+                    dialog.dismiss()
                     Toasti(it.message)
                 }
                 ApiStatus.LOADING -> {
@@ -100,13 +105,16 @@ class AddProduct : BaseActivity() {
             if (saveShareBtn.text.equals("Save")) {
                 if (productType.equals("newProduct")) {
                     if (checkImportentConstraints()) {
+                        dialog.show()
                         addProductViewModel.addProductToDB1(mapProductDataToJsonObject())
                     }
                 } else {
                     if (checkImportentConstraints()) {
+                        dialog.show()
                         addProductViewModel.updateProduct(mapProductDataToJsonObject(), productId)
                         if (currentState.equals("3")) {
-                            if (!productDataLocal.data.wc_product_id.isNullOrBlank()) {                             //this condition is to stop product immediately from selling
+                            if (!productDataLocal.data.wc_product_id.isNullOrBlank()) {
+                                dialog.show()//this condition is to stop product immediately from selling
                                 addProductViewModel.updateStatusInWC(
                                     "pending", fetchedProductData.data.wc_product_id.toString()
                                 )
@@ -119,13 +127,17 @@ class AddProduct : BaseActivity() {
         addProductViewModel.addProductResPonse().observe(this) {
             when (it.status) {
                 ApiStatus.SUCCESS -> {
+                    dialog.dismiss()
                     Toasti("Product Inserted Successfully")
                     saveShareBtn.text = "SHARE"
                     Preferences.saveProductCount(
                         applicationContext, (Preferences.loadProductCount(applicationContext)) + 1
                     )
                 }
-                ApiStatus.ERROR -> Toasti(it.message)
+                ApiStatus.ERROR -> {
+                    dialog.dismiss()
+                    Toasti(it.message)
+                }
                 ApiStatus.LOADING -> TODO()
             }
         }
@@ -133,22 +145,29 @@ class AddProduct : BaseActivity() {
         addProductViewModel.updateProductResPonse().observe(this) {
             when (it.status) {
                 ApiStatus.SUCCESS -> {
+                    dialog.dismiss()
                     //Toasti("Product Updated Successfully Pre Table")
                     refreshPage(productId)
                     saveShareBtn.text = "Share"
                 }
 
-                ApiStatus.ERROR -> Toasti(it.message)
+                ApiStatus.ERROR -> {
+                    dialog.dismiss()
+                    Toasti(it.message)
+                }
                 ApiStatus.LOADING -> TODO()
             }
         }
         addProductViewModel.updateStatusInWCResponse().observe(this) {
             when (it.status) {
                 ApiStatus.SUCCESS -> {
+                    dialog.dismiss()
                     Toasti("Product Updated Successfully")
                     refreshPage(productId)
                 }
-                ApiStatus.ERROR -> TODO()
+                ApiStatus.ERROR -> {
+                    dialog.dismiss()
+                }
                 ApiStatus.LOADING -> TODO()
             }
         }
@@ -156,10 +175,12 @@ class AddProduct : BaseActivity() {
         addProductViewModel.updateStatusInPreResponse().observe(this) {
             when (it.status) {
                 ApiStatus.SUCCESS -> {
+                    dialog.dismiss()
                     Toasti("Product Updated Successfully")
                     refreshPage(productId)
                 }
                 ApiStatus.ERROR -> {
+                    dialog.dismiss()
                     Toasti("Product Not Updated")
                 }
                 ApiStatus.LOADING -> TODO()
@@ -1049,6 +1070,7 @@ class AddProduct : BaseActivity() {
     }
 
     private fun initComponents() {
+        dialog = DialogGen()
         addProductViewModel = ViewModelProvider(this).get(AddProductViewModel::class.java)
         saveShareBtn = findViewById(R.id.toolbar_share_save_button)
         toolbar = findViewById(R.id.toolbar_for_products)
@@ -1113,10 +1135,12 @@ class AddProduct : BaseActivity() {
                     var status = "6"
                     if (productDataLocal.data.status == "1" || productDataLocal.data.status == "5" || productDataLocal.data.status == "2")       // for pending, out of stock and resubmission
                     {
+                        dialog.show()
                         addProductViewModel.updateStatusInPre(status, productId)
                     } else {
                         if (productDataLocal.data.status == "3")   // for approved products
                         {
+                            dialog.show()
                             addProductViewModel.updateStatusInPre(status, productId)
                             addProductViewModel.updateStatusInWC(
                                 "pending", productDataLocal.data.wc_product_id.toString()
@@ -1125,22 +1149,23 @@ class AddProduct : BaseActivity() {
                         } else {
                             if (productDataLocal.data.status == "6") {
                                 if (productDataLocal.data.wc_product_id.isNullOrBlank()) {
+                                    dialog.show()
                                     addProductViewModel.updateStatusInPre(
                                         "1", productId
                                     )     //pending
                                 } else {
                                     if (productDataLocal.data.stock.equals("outofstock")) {
+                                        dialog.show()
                                         addProductViewModel.updateStatusInPre(
                                             "5", productId
                                         )   // out of stock
                                     } else {
-
+                                        dialog.show()
                                         addProductViewModel.updateStatusInPre(
                                             "2", productId
                                         )   // Resubmission
                                     }
                                 }
-
                             }
                         }
                     }

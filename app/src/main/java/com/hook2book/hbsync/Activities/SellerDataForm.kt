@@ -1,6 +1,7 @@
 package com.hook2book.hbsync.Activities
 
 import android.R
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
@@ -28,11 +29,11 @@ class SellerDataForm : BaseActivity() {
     private lateinit var radioGroup: RadioGroup
     private lateinit var radioButton: RadioButton
     private var userType = 1 // Default value for seller type
+    private lateinit var dialog: Dialog
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySellerDataFormBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        //radioGroup=findViewById(R.id.radio_group_seller_type)
         sellerDataFormViewModel = ViewModelProvider(this).get(SellerDataFormViewModel::class.java)
         if (intent.hasExtra("mobileNo")) {
             mobileNo = intent.getStringExtra("mobileNo").toString()
@@ -68,8 +69,9 @@ class SellerDataForm : BaseActivity() {
                                 wcId,
                                 password,
                                 1, "1111",
-                                1,
+                                userType,
                             )
+                            dialog.show()
                             sellerDataFormViewModel.insertSellerData(sellerData)
                         }
                     }
@@ -86,10 +88,9 @@ class SellerDataForm : BaseActivity() {
             } else if (radioButton.text.toString() == "Seller") {
                 userType = 2
             }
-            //Toast.makeText(this, "Selected: " + radioButton.text, Toast.LENGTH_SHORT).show()
         })
         sellerDataFormViewModel.sellerDataStatus().observe(this) {
-            //Toasti("msg is " + it.data?.message.toString())
+            dialog.dismiss()
             if (it.data?.status.equals("success")) {
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
@@ -98,20 +99,4 @@ class SellerDataForm : BaseActivity() {
             }
         }
     }
-
-   /* fun addListenerOnButton() {
-        radioGroup = findViewById<View>(R.id.radio_group_seller_type) as RadioGroup
-        //btnDisplay = findViewById<View>(R.id.btnDisplay) as Button
-
-        // btnDisplay.setOnClickListener(object : OnClickListener() {
-        override fun onClick(v: View?) {
-            // get selected radio button from radioGroup
-
-            val selectedId: Int = binding.radioGroupSellerType.checkedRadioButtonId
-            // find the radiobutton by returned id
-            radioButton = findViewById<View>(selectedId) as RadioButton
-            Toasti(radioButton.text.toString())
-        }
-    })*/
-
 }

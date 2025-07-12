@@ -71,10 +71,10 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         mainViewModel.fetchUserData(Paper.book().read<String>(Prevalent.PubId).toString())
         Toasti(Paper.book().read<String>(Prevalent.PubId).toString())
-        bottomBar.menu.getItem(4).setOnMenuItemClickListener {
+       /* bottomBar.menu.getItem(4).setOnMenuItemClickListener {
            // Toasti("User Clicked")
             true
-        }
+        }*/
 
         // update system
         cMain = findViewById<View>(R.id.drawer_layout)
@@ -160,7 +160,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 }
             }
         }
-        mainViewModel.fetchUserData(Paper.book().read<String>(Prevalent.PubId).toString())
+        //mainViewModel.fetchUserData(Paper.book().read<String>(Prevalent.PubId).toString())
         mainViewModel.getUserData().observe(this) {
             when (it.status) {
                 ApiStatus.SUCCESS -> {
@@ -223,8 +223,8 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_account -> {
-                val sellerData = Preferences.loadAccountInfo(this)
-                Toasti(sellerData.data_outer.get(0).name)
+                val intent= Intent(applicationContext, AccountActivity::class.java)
+                startActivity(intent)
             }
             R.id.nav_logout -> {
 

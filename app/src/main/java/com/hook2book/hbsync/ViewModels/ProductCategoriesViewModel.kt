@@ -21,6 +21,5 @@ class ProductCategoriesViewModel(application: Application) : AndroidViewModel(ap
 
     fun getCategoriesList(): LiveData<ApiResult<List<CategoriesMain>>> {
         return productCategoriesRepo.apiResult
-
     }
 }

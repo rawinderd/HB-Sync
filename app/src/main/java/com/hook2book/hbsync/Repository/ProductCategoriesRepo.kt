@@ -24,8 +24,8 @@ class ProductCategoriesRepo(application: Application) {
         val response = RetroService.retroInstance.fetchCategories(Preferences.loadCombinedKey(application), params)
         if (response.isSuccessful) {
             if (response.isSuccessful) {
-                Log.e("Success Rawinder01", Gson().toJson(response.body()))
-            } else Log.e("UnSuccess Rawinder01", Gson().toJson(response.errorBody()))
+                Log.e("Success Rawinder1901", Gson().toJson(response.body()))
+            } else Log.e("UnSuccess Rawinder1901", Gson().toJson(response.errorBody()))
             apiResult.postValue(
                 ApiResult.Success(
                     response.body(),
@@ -37,6 +37,9 @@ class ProductCategoriesRepo(application: Application) {
 
         } else {
             val errorMsg = response.errorBody()?.string()
+            if (response.isSuccessful) {
+                Log.e("Success Rawinder1901", Gson().toJson(response.body()))
+            } else Log.e("UnSuccess Rawinder1901", Gson().toJson(response.errorBody()))
             response.errorBody()
                 ?.close()  // remember to close it after getting the stream of error body
             apiResult.postValue(

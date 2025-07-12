@@ -1,6 +1,7 @@
 package com.hook2book.hbsync.Activities
 
 import android.app.Activity
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -21,7 +22,6 @@ import com.hook2book.hbsync.R
 import com.hook2book.hbsync.UtilityClass.BaseActivity
 import com.hook2book.hbsync.ViewModels.ProductCategoriesViewModel
 import com.hook2book.hbsync.databinding.ActivityProductCategoriesBinding
-
 import java.io.Serializable
 
 class ProductCategories : BaseActivity(), ProductTagsAdapter.ItemClickListener {
@@ -29,19 +29,19 @@ class ProductCategories : BaseActivity(), ProductTagsAdapter.ItemClickListener {
     lateinit var productCategoriesViewModel: ProductCategoriesViewModel
     private var parentCategories: MutableList<CategoriesForListing> = ArrayList()
     private var childCategories: MutableList<CategoriesForListing> = ArrayList()
-
-    //private var ParentChildCategories: MutableList<CategoriesForListing> = ArrayList()
     private var ParentChildCategoriesMix: MutableList<CategoriesForListing> = ArrayList()
     private var productCategoriesLocal: MutableList<CategoriesForListing> = ArrayList()
     private var removedCategorylist: MutableList<RemovedCategoryChipMain> = ArrayList()
     lateinit var adapter: ProductCategoriesAdapter
     private lateinit var chipGroup: ChipGroup
     lateinit var recyclerview: RecyclerView
+    private lateinit var dialog: Dialog
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityProductCategoriesBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setUpRecycler()
+        dialog = DialogGen()
         chipGroup = findViewById<ChipGroup>(R.id.chip_group_product_categories)
         chipGroup.setOnClickListener(View.OnClickListener {
             Toasti(it.toString())
@@ -53,6 +53,7 @@ class ProductCategories : BaseActivity(), ProductTagsAdapter.ItemClickListener {
         fetchCategories()
         productCategoriesViewModel.getCategoriesList().observe(this, Observer {
             if (it.data?.size!! > 0) {
+                dialog.dismiss()
                 for (i in 0..it.data.size - 1) {
                     if (it.data.get(i).parent != 1751) {
                         if (it.data.get(i).parent == 0) {
@@ -122,6 +123,7 @@ class ProductCategories : BaseActivity(), ProductTagsAdapter.ItemClickListener {
     }
 
     private fun fetchCategories() {
+        dialog.show()
         productCategoriesViewModel.fetchCategories()
     }
 

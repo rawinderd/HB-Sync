@@ -1,5 +1,6 @@
 package com.hook2book.hbsync.Activities
 
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
@@ -20,9 +21,6 @@ import com.hook2book.hbsync.UtilityClass.BaseActivity
 import com.hook2book.hbsync.UtilityClass.Prevalent
 import com.hook2book.hbsync.ViewModels.RegisterViewModel
 import com.hook2book.hbsync.databinding.ActivityRegisterBinding
-
-
-
 import io.paperdb.Paper
 
 class RegisterActivity : BaseActivity() {
@@ -32,6 +30,7 @@ class RegisterActivity : BaseActivity() {
     private lateinit var InputPhoneNumber: EditText
     private lateinit var InputPassword: EditText
     private lateinit var InputEmail: EditText
+    private lateinit var dialog: Dialog
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
@@ -42,6 +41,7 @@ class RegisterActivity : BaseActivity() {
         registerViewModel.getRegisterUserResponse().observe(this) {
             when (it.status) {
                 ApiStatus.SUCCESS -> {
+                    dialog.dismiss()
                     Toasti("User Registered Successfully")
                     registerViewModel.allowAccess(
                         InputPhoneNumber.text.toString(), InputPassword.text.toString()
@@ -58,6 +58,7 @@ class RegisterActivity : BaseActivity() {
         registerViewModel.getLoginResponse().observe(this) {
             when (it.status) {
                 ApiStatus.SUCCESS -> {
+                    dialog.dismiss()
                     Toasti("User Login Successfully " + (it.data?.wpUser?.id))
                     Paper.book().write(Prevalent.UserPhoneKey, InputPhoneNumber.text.toString())
                     Paper.book().write(Prevalent.UserPasswordKey, InputPassword.text.toString())
@@ -104,6 +105,7 @@ class RegisterActivity : BaseActivity() {
                 registrationData = RegistrationData(
                     email, "First_Name", "Last_Name", password, phone, Billing(), Shipping()
                 )
+                dialog.show()
                 registerViewModel.registerUserAccount(registrationData)
             }
         }
