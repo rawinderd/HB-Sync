@@ -116,5 +116,6 @@ class RegisterActivity : BaseActivity() {
         InputPhoneNumber = findViewById(R.id.register_phone_number_input)
         InputPassword = findViewById(R.id.register_password_input)
         InputEmail = findViewById(R.id.register_email_input)
+        dialog = DialogGen()
     }
 }

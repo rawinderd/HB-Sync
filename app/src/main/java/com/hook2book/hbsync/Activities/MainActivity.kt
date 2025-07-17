@@ -29,7 +29,6 @@ import com.google.android.play.core.install.InstallStateUpdatedListener
 import com.google.android.play.core.install.model.AppUpdateType
 import com.google.android.play.core.install.model.InstallStatus
 import com.google.android.play.core.install.model.UpdateAvailability
-import com.hook2book.hbsync.Activities.SellerDataForm
 import com.hook2book.hbsync.EnumClasses.ApiStatus
 import com.hook2book.hbsync.R
 import com.hook2book.hbsync.UtilityClass.BaseActivity
@@ -42,9 +41,9 @@ import com.hook2book.hbsync.fragments.HomeFragment
 import com.hook2book.hbsync.fragments.OrderFragment
 import com.hook2book.hbsync.fragments.ProductsFragment
 import com.hook2book.hbsync.fragments.UserFragment
-
 import dagger.hilt.android.AndroidEntryPoint
 import io.paperdb.Paper
+
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -65,12 +64,12 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        Paper.init(applicationContext)
         toolbar = findViewById(R.id.toolbar_simple)
         setToolbar(toolbar, false, "Home", true)
         bottomBar = findViewById(R.id.bottomNav)
         mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         mainViewModel.fetchUserData(Paper.book().read<String>(Prevalent.PubId).toString())
-        Toasti(Paper.book().read<String>(Prevalent.PubId).toString())
        /* bottomBar.menu.getItem(4).setOnMenuItemClickListener {
            // Toasti("User Clicked")
             true
@@ -131,27 +130,27 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         bottomBar.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.home -> {
-                    loadFragment(HomeFragment())
+                    loadFragment(HomeFragment(),"home")
                     true
                 }
 
                 R.id.products -> {
-                    loadFragment(ProductsFragment())
+                    loadFragment(ProductsFragment(),"products")
                     true
                 }
 
                 R.id.coupon -> {
-                    loadFragment(CouponFragment())
+                    loadFragment(CouponFragment(),"coupon")
                     true
                 }
 
                 R.id.order -> {
-                    loadFragment(OrderFragment())
+                    loadFragment(OrderFragment(),"order")
                     true
                 }
 
                 R.id.user -> {
-                    loadFragment(UserFragment())
+                    loadFragment(UserFragment(),"user")
                     true
                 }
 
@@ -160,7 +159,6 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 }
             }
         }
-        //mainViewModel.fetchUserData(Paper.book().read<String>(Prevalent.PubId).toString())
         mainViewModel.getUserData().observe(this) {
             when (it.status) {
                 ApiStatus.SUCCESS -> {
@@ -202,7 +200,6 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             super.onBackPressed()
             return
         }
-
         this.doubleBackToExitPressedOnce = true
         Toast.makeText(this, "Please click BACK again to Exit", Toast.LENGTH_SHORT).show()
         Handler(Looper.getMainLooper()).postDelayed(Runnable { doubleBackToExitPressedOnce = false }, 2000)
@@ -213,9 +210,9 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
-    private fun loadFragment(fragment: Fragment) {
+    private fun loadFragment(fragment: Fragment, tag: String) {
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.container, fragment)
+        transaction.replace(R.id.container, fragment,tag)
         transaction.commit()
     }
 

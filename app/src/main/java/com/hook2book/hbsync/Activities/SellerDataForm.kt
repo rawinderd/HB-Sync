@@ -34,12 +34,19 @@ class SellerDataForm : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySellerDataFormBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        dialog = DialogGen()
         sellerDataFormViewModel = ViewModelProvider(this).get(SellerDataFormViewModel::class.java)
         if (intent.hasExtra("mobileNo")) {
             mobileNo = intent.getStringExtra("mobileNo").toString()
             wcId = intent.getStringExtra("userId").toString()
             password = intent.getStringExtra("password").toString()
             binding.loginPhoneNumberInner.setText(mobileNo)
+        }
+        if (intent.hasExtra("userId")) {
+             wcId = intent.getStringExtra("userId").toString()
+        }
+        if (intent.hasExtra("password")) {
+            password = intent.getStringExtra("password").toString()
         }
         binding.submitBtnSellerData.setOnClickListener(View.OnClickListener {
             name = binding.loginNameInnerr.text.toString()
@@ -60,7 +67,6 @@ class SellerDataForm : BaseActivity() {
                         if (TextUtils.isEmpty(address)) {
                             Toast.makeText(this, "Please Enter Address", Toast.LENGTH_LONG).show()
                         } else {
-                            //Toasti("Data Complete")
                             sellerData = DataOuter(
                                 name,
                                 mobileNo,

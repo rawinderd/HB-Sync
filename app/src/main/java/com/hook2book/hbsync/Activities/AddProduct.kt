@@ -1314,7 +1314,7 @@ class AddProduct : BaseActivity() {
                 ((Preferences.loadProductCount(applicationContext).toInt()) + 1).toString()
         }
         sku =
-            "SR-" + (Preferences.loadAccountInfo(applicationContext)).data_outer.get(0).sku_initial + "-Pub-" + productCount
+            "HB-" + (Preferences.loadAccountInfo(applicationContext)).data_outer.get(0).sku_initial + "-Pub-" + productCount
         binding.productSkuTextview.text = sku
         productDataLocal.data.sku = sku
     }

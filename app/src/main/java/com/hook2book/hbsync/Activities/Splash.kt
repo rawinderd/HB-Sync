@@ -63,7 +63,10 @@ class Splash : BaseActivity() {
             when (it.status) {
                 ApiStatus.SUCCESS -> {
                     Paper.book().write(Prevalent.PubId, it.data?.wpUser?.data?.id.toString())
+
                     val intent = Intent(this, MainActivity::class.java)
+                    intent.putExtra("password", Paper.book().read<String>(Prevalent.UserPasswordKey).toString())
+                    intent.putExtra("userId", it.data?.wpUser?.id.toString())
                     startActivity(intent)
                 }
                 ApiStatus.ERROR -> Toasti("Error In Login")
