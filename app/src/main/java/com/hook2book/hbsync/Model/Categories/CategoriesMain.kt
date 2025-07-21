@@ -1,6 +1,7 @@
 package com.hook2book.hbsync.Model.Categories
 
 import com.hook2book.hbsync.Model.CommonModels.Links
+import java.io.Serializable
 
 class CategoriesMain
     (val _links: Links,
@@ -14,4 +15,4 @@ class CategoriesMain
      val parent: Int,
      val slug: String,
      val yoast_head: String,
-     )
+     ): Serializable

@@ -130,8 +130,7 @@ class AddProduct : BaseActivity() {
                     dialog.dismiss()
                     Toasti("Product Inserted Successfully")
                     saveShareBtn.text = "SHARE"
-                    Preferences.saveProductCount(
-                        applicationContext, (Preferences.loadProductCount(applicationContext)) + 1
+                    Preferences.saveProductCount(applicationContext, (Preferences.loadProductCount(applicationContext)) + 1
                     )
                 }
                 ApiStatus.ERROR -> {
@@ -1309,9 +1308,11 @@ class AddProduct : BaseActivity() {
         var productCount: String
         if (Preferences.loadProductCount(applicationContext).isNullOrBlank()) {
             productCount = "1"
+            Log.i("TAG", "setUpSKU: Product Count: " + productCount)
         } else {
             productCount =
                 ((Preferences.loadProductCount(applicationContext).toInt()) + 1).toString()
+            Log.i("TAG", "setUpSKU: Product Count: " + productCount)
         }
         sku =
             "HB-" + (Preferences.loadAccountInfo(applicationContext)).data_outer.get(0).sku_initial + "-Pub-" + productCount

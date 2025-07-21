@@ -170,6 +170,15 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                   //if (it.message == "Record not found") {
                         Toasti("Please Enter Account Information")
                         val intent = Intent(this, SellerDataForm::class.java)
+                    if (intent.hasExtra("userId")) {
+
+                        val wcId = intent.getStringExtra("userId").toString()
+                        intent.putExtra("userId", wcId)
+                    }
+                    if (intent.hasExtra("password")) {
+                        val password = intent.getStringExtra("password").toString()
+                        intent.putExtra("password", password)
+                    }
                         startActivity(intent)
                    // }
                     //Toasti("Error in Fetching Data")

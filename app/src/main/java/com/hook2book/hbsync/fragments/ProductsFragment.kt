@@ -173,12 +173,18 @@ class ProductsFragment : Fragment(), ProductListAdapter.ItemClickListener {
                     adapter.setData(it.data?.data_outer?.data)
                     totalPages = it.data?.data_outer?.last_page
                     totalProducts = it.data?.data_outer?.total
-                    Log.i("TAG", "fetchProducts onCreateView: total pages Updated " + totalPages)
+                    Log.i("TAG", "fetchProducts onCreateView: total pages Updated " + totalPages+" total products "+totalProducts)
                     Preferences.saveProductCount(context, totalProducts.toString())
                 }
                 ApiStatus.ERROR -> {
                     dialog.dismiss()
                     Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
+                    val str="{\"message\":\"Product not found\"}"
+                    Log.i("tag", "onCreateView: "+str)
+                    if (it.message.equals("{\"message\":\"Product not found\"}")) {
+                        Preferences.saveProductCount(context, "0")
+                        Log.i("TAG", "fetchProducts onCreateView: total pages Updated 0")
+                    }
                 }
                 ApiStatus.LOADING -> {
 

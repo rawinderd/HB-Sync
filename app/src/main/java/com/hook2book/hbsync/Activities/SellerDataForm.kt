@@ -26,7 +26,6 @@ class SellerDataForm : BaseActivity() {
     private lateinit var firmName: String
     private lateinit var sellerDataFormViewModel: SellerDataFormViewModel
     private lateinit var address: String
-    private lateinit var radioGroup: RadioGroup
     private lateinit var radioButton: RadioButton
     private var userType = 1 // Default value for seller type
     private lateinit var dialog: Dialog
@@ -45,7 +44,8 @@ class SellerDataForm : BaseActivity() {
         if (intent.hasExtra("userId")) {
              wcId = intent.getStringExtra("userId").toString()
         }
-        if (intent.hasExtra("password")) {
+        if (intent.hasExtra("" +
+                    "")) {
             password = intent.getStringExtra("password").toString()
         }
         binding.submitBtnSellerData.setOnClickListener(View.OnClickListener {

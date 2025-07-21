@@ -16,7 +16,11 @@ class Splash : BaseActivity() {
     private lateinit var binding: ActivitySplashBinding
     private lateinit var splashViewModel: SplashViewModel
     private lateinit var UserPhoneKey: String
+
     private lateinit var UserPasswordKey: String
+    private lateinit var pubIdLocal: String
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,14 +68,37 @@ class Splash : BaseActivity() {
                 ApiStatus.SUCCESS -> {
                     Paper.book().write(Prevalent.PubId, it.data?.wpUser?.data?.id.toString())
 
-                    val intent = Intent(this, MainActivity::class.java)
-                    intent.putExtra("password", Paper.book().read<String>(Prevalent.UserPasswordKey).toString())
-                    intent.putExtra("userId", it.data?.wpUser?.id.toString())
-                    startActivity(intent)
+                    // val intent = Intent(this, MainActivity::class.java)
+                   // intent.putExtra("password", Paper.book().read<String>(Prevalent.UserPasswordKey).toString())
+                    //intent.putExtra("userId", it.data?.wpUser?.id.toString())
+                    //
+                    splashViewModel.fetchUserData(Paper.book().read<String>(Prevalent.PubId).toString())
                 }
                 ApiStatus.ERROR -> Toasti("Error In Login")
                 ApiStatus.LOADING -> TODO()
             }
+        }
+        splashViewModel.getUserData().observe(this) {
+            when (it.status) {
+                ApiStatus.SUCCESS -> {
+                    //Toasti("Data Fetched Successfully")
+                    //bottomBar.menu.getItem(4).setTitle(it.data?.data_outer?.get(0)?.name)
+                    Preferences.saveAccountInfo(this, it.data)
+
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+
+                }
+                ApiStatus.ERROR -> {
+                    Toasti("Enter Account Information")
+                    val intent = Intent(this, SellerDataForm::class.java)
+                    intent.putExtra("password", Paper.book().read<String>(Prevalent.UserPasswordKey).toString())
+                    intent.putExtra("userId", Paper.book().read<String>(Prevalent.PubId).toString())
+                    startActivity(intent)
+                }
+                ApiStatus.LOADING -> TODO()
+            }
+
         }
     }
 
