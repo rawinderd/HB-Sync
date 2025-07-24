@@ -354,7 +354,6 @@ class AddProduct : BaseActivity() {
                                     )
                                     productDataLocal.data.height = intent.getStringExtra("height")!!
                                 }
-
                             }
 
                             if (intent.hasExtra("shippingClass")) {

@@ -1,5 +1,7 @@
 package com.hook2book.hbsync.Model.Categories
 
+import java.io.Serializable
+
 data class Image(
     val alt: String,
     val date_created: String,
@@ -9,4 +11,4 @@ data class Image(
     val id: Int,
     val name: String,
     val src: String
-)
+):Serializable

@@ -44,8 +44,7 @@ class SellerDataForm : BaseActivity() {
         if (intent.hasExtra("userId")) {
              wcId = intent.getStringExtra("userId").toString()
         }
-        if (intent.hasExtra("" +
-                    "")) {
+        if (intent.hasExtra("password")) {
             password = intent.getStringExtra("password").toString()
         }
         binding.submitBtnSellerData.setOnClickListener(View.OnClickListener {
