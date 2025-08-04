@@ -2,58 +2,119 @@ package com.hook2book.hbsync.fragments
 
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.hook2book.hbsync.R
+import com.hook2book.hbsync.RoomDatabase.CategoriesMainForRoom
+import com.hook2book.hbsync.ViewModels.HomeFragmentViewModel
+import com.hook2book.hbsync.databinding.FragmentHomeBinding
+import java.lang.reflect.InvocationTargetException
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [HomeFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class HomeFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var binding: FragmentHomeBinding
+    private lateinit var homeFragmentViewModel: HomeFragmentViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
-    }
+    ): View {
+        val view: View = inflater.inflate(R.layout.fragment_home, container, false)
+        binding = FragmentHomeBinding.bind(view)
+        try {
+            homeFragmentViewModel = ViewModelProvider(this).get(HomeFragmentViewModel::class.java)
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment HomeFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) = HomeFragment().apply {
-            arguments = Bundle().apply {
-                putString(ARG_PARAM1, param1)
-                putString(ARG_PARAM2, param2)
+        } catch (e: InvocationTargetException) {
+
+            Log.i("TAG", "onCreateView1: "+e)
+        } catch (e:Exception) {
+
+            // generic exception handling
+            Log.i("TAG", "onCreateView2: "+e)
+        }
+        homeFragmentViewModel = ViewModelProvider(this).get(HomeFragmentViewModel::class.java)
+        binding.buttonInsert.setOnClickListener {
+            homeFragmentViewModel.insertCategories(getList())
+        }
+        binding.buttonFetch.setOnClickListener({
+            homeFragmentViewModel.getAllCategories()
+
+        })
+        homeFragmentViewModel.fetchedlist.observe(viewLifecycleOwner) {
+            for (category in it) {
+                Log.i(
+                    "TAG",
+                    "onCreateView: ${category.CategoryName} - ${category.description} - ${category.id}"
+                )
             }
         }
+        binding.buttonFetch.setOnClickListener()
+         {
+            homeFragmentViewModel.clickCheck()
+        }
+        return view
+    }
+
+    private fun getList(): List<CategoriesMainForRoom> {
+        lateinit var list: MutableList<CategoriesMainForRoom>
+        list.add(
+            CategoriesMainForRoom(
+                count = 0,
+                description = "Sample Description",
+                id = 1,
+                CategoryName = "3455 Category",
+                CategoryParent = 0
+            )
+        )
+        list.add(
+            CategoriesMainForRoom(
+                count = 0,
+                description = "Sample Description",
+                id = 1,
+                CategoryName = "4554 Category",
+                CategoryParent = 0
+            )
+        )
+        list.add(
+            CategoriesMainForRoom(
+                count = 0,
+                description = "Sample Description",
+                id = 1,
+                CategoryName = "6767 Category",
+                CategoryParent = 0
+            )
+        )
+        list.add(
+            CategoriesMainForRoom(
+                count = 0,
+                description = "Sample Description",
+                id = 1,
+                CategoryName = "8989 Category",
+                CategoryParent = 0
+            )
+        )
+
+        list.add(
+            CategoriesMainForRoom(
+                count = 0,
+                description = "Sample Description",
+                id = 1,
+                CategoryName = "323 Category",
+                CategoryParent = 0
+            )
+        )
+
+        list.add(
+            CategoriesMainForRoom(
+                count = 0,
+                description = "Sample Description",
+                id = 1,
+                CategoryName = "454554 Category",
+                CategoryParent = 0
+            )
+        )
+        return list
     }
 }

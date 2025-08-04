@@ -7,6 +7,7 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
@@ -30,7 +31,9 @@ import com.google.android.play.core.install.model.AppUpdateType
 import com.google.android.play.core.install.model.InstallStatus
 import com.google.android.play.core.install.model.UpdateAvailability
 import com.hook2book.hbsync.EnumClasses.ApiStatus
+import com.hook2book.hbsync.Model.Categories.CategoriesMain
 import com.hook2book.hbsync.R
+import com.hook2book.hbsync.RoomDatabase.CategoriesMainForRoom
 import com.hook2book.hbsync.UtilityClass.BaseActivity
 import com.hook2book.hbsync.UtilityClass.Preferences
 import com.hook2book.hbsync.UtilityClass.Prevalent
@@ -51,7 +54,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
     private lateinit var bottomBar: BottomNavigationView
-    private var mainViewModel: MainViewModel = MainViewModel()
+    private lateinit var mainViewModel: MainViewModel
     private lateinit var toolbar: Toolbar
     lateinit var drawer: DrawerLayout
     lateinit var navigationView: NavigationView
@@ -70,7 +73,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         bottomBar = findViewById(R.id.bottomNav)
         mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         mainViewModel.fetchUserData(Paper.book().read<String>(Prevalent.PubId).toString())
-       /* bottomBar.menu.getItem(4).setOnMenuItemClickListener {
+        /* bottomBar.menu.getItem(4).setOnMenuItemClickListener {
            // Toasti("User Clicked")
             true
         }*/
@@ -78,13 +81,13 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         // update system
         cMain = findViewById<View>(R.id.drawer_layout)
         try {
-            val pInfo: PackageInfo =
-                this.packageManager.getPackageInfo(this.packageName, 0)
+            val pInfo: PackageInfo = this.packageManager.getPackageInfo(this.packageName, 0)
             val version = pInfo.versionName
-            binding.versionCode.text = "Version:"+version
+            binding.versionCode.text = "Version:" + version
         } catch (e: PackageManager.NameNotFoundException) {
             e.printStackTrace()
         }
+        loadFragment(HomeFragment(), "home")
         appUpdateManager = AppUpdateManagerFactory.create(applicationContext)
         installStateUpdatedListener = InstallStateUpdatedListener(
             { state ->
@@ -98,59 +101,58 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             })
         appUpdateManager!!.registerListener(installStateUpdatedListener!!)
         checkUpdate()
-
-
-        /* bottomBar.setOnLongClickListener {
-            when (it.id) {
-                R.id.user -> {
-                    Toasti("User long clicked")
+        // mainViewModel.fetchCategories()
+        mainViewModel.getCategoriesList().observe(this) {
+            when (it.status) {
+                ApiStatus.SUCCESS -> {
+                    Log.d("Categories", "Data Fetched Successfully")
+                    var categoryList: MutableList<CategoriesMainForRoom> = mutableListOf()
+                    for (category in it.data ?: emptyList<CategoriesMain>()) {
+                        categoryList.add(
+                            CategoriesMainForRoom(
+                                count = category.count,
+                                description = category.description,
+                                id = category.id,
+                                CategoryName = category.name,
+                                CategoryParent = category.parent
+                            )
+                        )
+                    }
+                    // updateCategoriesInRoom(categoryList)
+                    //Preferences.saveCategories(this, it.data)
                 }
-                R.id.coupon -> {
-                    Toasti("coupon long clicked")
+                ApiStatus.ERROR -> {
+                    Log.d("Categories", "Error in Fetching category Data")
+                }
+                ApiStatus.LOADING -> {
+                    Log.d("Categories", "Loading Data")
                 }
             }
-            true
         }
-*//* when(it.id)
-                {
-                    R.id.user -> {
-                        Toasti("User long clicked")
-                    }
-                    R.id.coupon -> {
-                        Toasti("coupon long clicked")
-                    }
-                }
-                *//*Toasti("Long Clicked")
-               // val intent = Intent(this, PublisherOrders::class.java)
-                //startActivity(intent)*//*
-                true
-
-        )*/
-
         bottomBar.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.home -> {
-                    loadFragment(HomeFragment(),"home")
+                    loadFragment(HomeFragment(), "home")
                     true
                 }
 
                 R.id.products -> {
-                    loadFragment(ProductsFragment(),"products")
+                    loadFragment(ProductsFragment(), "products")
                     true
                 }
 
                 R.id.coupon -> {
-                    loadFragment(CouponFragment(),"coupon")
+                    loadFragment(CouponFragment(), "coupon")
                     true
                 }
 
                 R.id.order -> {
-                    loadFragment(OrderFragment(),"order")
+                    loadFragment(OrderFragment(), "order")
                     true
                 }
 
                 R.id.user -> {
-                    loadFragment(UserFragment(),"user")
+                    loadFragment(UserFragment(), "user")
                     true
                 }
 
@@ -167,9 +169,9 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                     Preferences.saveAccountInfo(this, it.data)
                 }
                 ApiStatus.ERROR -> {
-                  //if (it.message == "Record not found") {
-                        Toasti("Please Enter Account Information")
-                        val intent = Intent(this, SellerDataForm::class.java)
+                    //if (it.message == "Record not found") {
+                    Toasti("Please Enter Account Information")
+                    val intent = Intent(this, SellerDataForm::class.java)
                     if (intent.hasExtra("userId")) {
 
                         val wcId = intent.getStringExtra("userId").toString()
@@ -179,8 +181,8 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                         val password = intent.getStringExtra("password").toString()
                         intent.putExtra("password", password)
                     }
-                        startActivity(intent)
-                   // }
+                    startActivity(intent)
+                    // }
                     //Toasti("Error in Fetching Data")
                 }
                 ApiStatus.LOADING -> TODO()
@@ -203,6 +205,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
 
     }
+
     private var doubleBackToExitPressedOnce = false
     override fun onBackPressed() {
         if (doubleBackToExitPressedOnce) {
@@ -211,7 +214,9 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         }
         this.doubleBackToExitPressedOnce = true
         Toast.makeText(this, "Please click BACK again to Exit", Toast.LENGTH_SHORT).show()
-        Handler(Looper.getMainLooper()).postDelayed(Runnable { doubleBackToExitPressedOnce = false }, 2000)
+        Handler(Looper.getMainLooper()).postDelayed(Runnable {
+            doubleBackToExitPressedOnce = false
+        }, 2000)
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -221,7 +226,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
     private fun loadFragment(fragment: Fragment, tag: String) {
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.container, fragment,tag)
+        transaction.replace(R.id.container, fragment, tag)
         transaction.commit()
     }
 
@@ -229,7 +234,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_account -> {
-                val intent= Intent(applicationContext, AccountActivity::class.java)
+                val intent = Intent(applicationContext, AccountActivity::class.java)
                 startActivity(intent)
             }
             R.id.nav_logout -> {
@@ -247,6 +252,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         drawer.closeDrawer(GravityCompat.START)
         return true
     }
+
     private fun checkUpdate() {
         val appUpdateInfoTask = appUpdateManager!!.appUpdateInfo
         appUpdateInfoTask.addOnSuccessListener { appUpdateInfo: AppUpdateInfo ->
@@ -263,10 +269,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     private fun startUpdateFlow(appUpdateInfo: AppUpdateInfo) {
         try {
             appUpdateManager!!.startUpdateFlowForResult(
-                appUpdateInfo,
-                AppUpdateType.FLEXIBLE,
-                this,
-                REQ_CODE
+                appUpdateInfo, AppUpdateType.FLEXIBLE, this, REQ_CODE
             )
         } catch (e: SendIntentException) {
             e.printStackTrace()
@@ -279,18 +282,18 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             if (resultCode == RESULT_CANCELED) {
                 Toast.makeText(
                     applicationContext,
-                    "Update canceled by user! Result Code: $resultCode", Toast.LENGTH_LONG
+                    "Update canceled by user! Result Code: $resultCode",
+                    Toast.LENGTH_LONG
                 ).show()
             } else if (resultCode == RESULT_OK) {
                 Toast.makeText(
                     applicationContext,
-                    "Update success! Result Code: $resultCode", Toast.LENGTH_LONG
+                    "Update success! Result Code: $resultCode",
+                    Toast.LENGTH_LONG
                 ).show()
             } else {
                 Toast.makeText(
-                    applicationContext,
-                    "Update Failed! Result Code: $resultCode",
-                    Toast.LENGTH_LONG
+                    applicationContext, "Update Failed! Result Code: $resultCode", Toast.LENGTH_LONG
                 ).show()
                 checkUpdate()
             }
@@ -299,11 +302,8 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
     private fun popupSnackBarForCompleteUpdate() {
         Snackbar.make(
-            cMain,
-            "New app is ready!",
-            Snackbar.LENGTH_INDEFINITE
-        )
-            .setAction("Install") { view: View? ->
+            cMain, "New app is ready!", Snackbar.LENGTH_INDEFINITE
+        ).setAction("Install") { view: View? ->
                 if (appUpdateManager != null) {
                     appUpdateManager!!.completeUpdate()
                 }
@@ -314,5 +314,17 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         if (appUpdateManager != null) {
             appUpdateManager!!.unregisterListener(installStateUpdatedListener!!)
         }
-    }
+    }/* private fun updateCategoriesInRoom(categoriesMains: MutableList<CategoriesMainForRoom>)
+    {
+        if(categoriesMains.isNotEmpty()) {
+            Log.d("Categories", "Updating Categories in Room")
+            appScope.launch {
+                for (category in categoriesMains) {
+                    CommonDatabase.getDatabase(appScope).categoriesDaoFun().insertAll(categoriesMains)
+                }
+            }
+        } else {
+            Log.d("Categories", "No Categories to Update in Room")
+        }
+    }*/
 }

@@ -1,40 +1,35 @@
 [versions]
-agp = "8.8.0"
-kotlin = "1.9.24"
-coreKtx = "1.16.0"
+agp = "8.8.2"
+kotlin = "2.1.0"
 junit = "4.13.2"
-junitVersion = "1.2.1"
-espressoCore = "3.6.1"
+junitVersion = "1.3.0"
+espressoCore = "3.7.0"
 appcompat = "1.7.1"
 material = "1.12.0"
 cardview = "1.0.0"
-hiltAndroid = "2.51.1"
-hiltCompiler = "2.3.1"
+hiltAndroid = "2.57"
 kotlinParcelizeRuntimeVersion = "1.9.25"
 activity = "1.10.1"
 constraintlayout = "2.2.1"
-navigationFragmentKtx = "2.9.0"
-navigationUiKtx = "2.9.0"
+navigationFragmentKtx = "2.9.3"
+navigationUiKtx = "2.9.3"
 paperdb = "2.7.2"
 recyclerview = "1.4.0"
-retrofit = "2.9.0"
+retrofit = "3.0.0"
+runtime = "1.1.1"
 uiAndroid = "1.8.3"
-playServicesAnalyticsImpl = "18.2.0"
 swiperefreshlayout = "1.1.0"
 appUpdateKtx = "2.1.0"
-material3Android = "1.3.2"
-
+roomRuntimeAndroid = "2.7.2"
 [libraries]
-androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+
+
+compiler = { module = "android.arch.persistence.room:compiler", version.ref = "runtime" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
-androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
-androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
-androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 cardview = { module = "androidx.cardview:cardview", version.ref = "cardview" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroid" }
-hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hiltCompiler" }
 jetbrains-kotlin-parcelize-runtime = { module = "org.jetbrains.kotlin:kotlin-parcelize-runtime", version.ref = "kotlinParcelizeRuntimeVersion" }
 ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -46,12 +41,12 @@ navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx",
 paperdb = { module = "io.github.pilgr:paperdb", version.ref = "paperdb" }
 recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerview" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+runtime = { module = "android.arch.persistence.room:runtime", version.ref = "runtime" }
 ui-android = { group = "androidx.compose.ui", name = "ui-android", version.ref = "uiAndroid" }
-play-services-analytics-impl = { group = "com.google.android.gms", name = "play-services-analytics-impl", version.ref = "playServicesAnalyticsImpl" }
 swiperefreshlayout = { group = "androidx.swiperefreshlayout", name = "swiperefreshlayout", version.ref = "swiperefreshlayout" }
-material3-android = { group = "androidx.compose.material3", name = "material3-android", version.ref = "material3Android" }
 app-update-ktx = { group = "com.google.android.play", name = "app-update-ktx", version.ref = "appUpdateKtx" }
 app-update = { module = "com.google.android.play:app-update", version.ref = "appUpdateKtx" }
+androidx-room-runtime-android = { group = "androidx.room", name = "room-runtime-android", version.ref = "roomRuntimeAndroid" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

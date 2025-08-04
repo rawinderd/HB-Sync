@@ -49,6 +49,7 @@ dependencies {
     implementation(libs.ui.android)
     implementation(libs.swiperefreshlayout)
     implementation(libs.app.update.ktx)
+    implementation(libs.androidx.room.runtime.android)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
@@ -61,4 +62,5 @@ dependencies {
     implementation (libs.converter.gson)
     implementation(libs.app.update)
     implementation(libs.app.update.ktx)
+    implementation (libs.runtime)
 }

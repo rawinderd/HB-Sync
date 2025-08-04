@@ -33,10 +33,7 @@ class OrderFragment : Fragment(), SubOrderListingAdapter.ItemClickListener {
         publisherOrderViewModel = ViewModelProvider(this).get(PublisherOrderViewModel::class.java)
         publisherOrderViewModel.fetchSubOrders(Preferences.loadAccountInfo(context).data_outer.get(0).sku_initial)
         publisherOrderViewModel.getSubOrders().observe(viewLifecycleOwner) {
-            // Toasti(it.data?.data_outer?.data?.get(0)?.first_name)
-            //Toasti(it.data?.data_outer?.data?.get(0)?.last_name)
             adapter.setData(it.data)
-
         }
         return view
     }
