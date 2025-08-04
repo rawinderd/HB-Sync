@@ -1,5 +1,6 @@
 package com.hook2book.hbsync.Activities
 
+import CommonDatabase
 import android.content.Intent
 import android.content.IntentSender.SendIntentException
 import android.content.pm.PackageInfo
@@ -46,6 +47,8 @@ import com.hook2book.hbsync.fragments.ProductsFragment
 import com.hook2book.hbsync.fragments.UserFragment
 import dagger.hilt.android.AndroidEntryPoint
 import io.paperdb.Paper
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
@@ -73,12 +76,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         bottomBar = findViewById(R.id.bottomNav)
         mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         mainViewModel.fetchUserData(Paper.book().read<String>(Prevalent.PubId).toString())
-        /* bottomBar.menu.getItem(4).setOnMenuItemClickListener {
-           // Toasti("User Clicked")
-            true
-        }*/
 
-        // update system
         cMain = findViewById<View>(R.id.drawer_layout)
         try {
             val pInfo: PackageInfo = this.packageManager.getPackageInfo(this.packageName, 0)
@@ -101,7 +99,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             })
         appUpdateManager!!.registerListener(installStateUpdatedListener!!)
         checkUpdate()
-        // mainViewModel.fetchCategories()
+        mainViewModel.fetchCategories()
         mainViewModel.getCategoriesList().observe(this) {
             when (it.status) {
                 ApiStatus.SUCCESS -> {
@@ -118,8 +116,8 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                             )
                         )
                     }
-                    // updateCategoriesInRoom(categoryList)
-                    //Preferences.saveCategories(this, it.data)
+                    updateCategoriesInRoom(categoryList)
+                    // //Preferences.saveCategories(this, it.data)
                 }
                 ApiStatus.ERROR -> {
                     Log.d("Categories", "Error in Fetching category Data")
@@ -165,7 +163,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             when (it.status) {
                 ApiStatus.SUCCESS -> {
                     Toasti("Data Fetched Successfully")
-                    bottomBar.menu.getItem(4).setTitle(it.data?.data_outer?.get(0)?.name)
+                    bottomBar.menu.getItem(4).title = it.data?.data_outer?.get(0)?.name
                     Preferences.saveAccountInfo(this, it.data)
                 }
                 ApiStatus.ERROR -> {
@@ -304,27 +302,33 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         Snackbar.make(
             cMain, "New app is ready!", Snackbar.LENGTH_INDEFINITE
         ).setAction("Install") { view: View? ->
-                if (appUpdateManager != null) {
-                    appUpdateManager!!.completeUpdate()
-                }
-            }.setActionTextColor(getResources().getColor(R.color.green)).show()
+            if (appUpdateManager != null) {
+                appUpdateManager!!.completeUpdate()
+            }
+        }.setActionTextColor(getResources().getColor(R.color.green)).show()
     }
 
     private fun removeInstallStateUpdateListener() {
         if (appUpdateManager != null) {
             appUpdateManager!!.unregisterListener(installStateUpdatedListener!!)
         }
-    }/* private fun updateCategoriesInRoom(categoriesMains: MutableList<CategoriesMainForRoom>)
-    {
-        if(categoriesMains.isNotEmpty()) {
-            Log.d("Categories", "Updating Categories in Room")
-            appScope.launch {
-                for (category in categoriesMains) {
-                    CommonDatabase.getDatabase(appScope).categoriesDaoFun().insertAll(categoriesMains)
+    }
+
+    private fun updateCategoriesInRoom(categoriesMains: MutableList<CategoriesMainForRoom>) {
+        if (categoriesMains.isNotEmpty()) {
+           // Log.d("Categories", "Updating Categories in Room")
+            GlobalScope.launch {
+                for (i in 0..categoriesMains.size - 1) {
+                    Log.i(
+                        "TAG",
+                        "updateCategoriesInRoom: $i " + categoriesMains.get(i).CategoryName
+                    )
+                    CommonDatabase.getDatabase(applicationContext).categoriesDao()
+                        .insertAll(categoriesMains)
                 }
             }
         } else {
             Log.d("Categories", "No Categories to Update in Room")
         }
-    }*/
+    }
 }

@@ -12,11 +12,14 @@ import com.hook2book.hbsync.R
 import com.hook2book.hbsync.RoomDatabase.CategoriesMainForRoom
 import com.hook2book.hbsync.ViewModels.HomeFragmentViewModel
 import com.hook2book.hbsync.databinding.FragmentHomeBinding
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import java.lang.reflect.InvocationTargetException
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var homeFragmentViewModel: HomeFragmentViewModel
+    private lateinit var categoriesMains: MutableList<CategoriesMainForRoom>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -34,14 +37,22 @@ class HomeFragment : Fragment() {
             // generic exception handling
             Log.i("TAG", "onCreateView2: "+e)
         }
-        homeFragmentViewModel = ViewModelProvider(this).get(HomeFragmentViewModel::class.java)
+        binding.buttonFetch.setOnClickListener({
+            GlobalScope.launch{
+               // categoriesMains.addAll(CommonDatabase.getDatabase(activity)).categoriesDao().getAll())
+            }
+        })
         binding.buttonInsert.setOnClickListener {
+            for (i in 0..categoriesMains.size - 1) {
+                Log.i("TAG", "onCreateView: $i "+categoriesMains.get(i).CategoryName)
+            }
+        }
+
+        homeFragmentViewModel = ViewModelProvider(this).get(HomeFragmentViewModel::class.java)
+        /*binding.buttonInsert.setOnClickListener {
             homeFragmentViewModel.insertCategories(getList())
         }
-        binding.buttonFetch.setOnClickListener({
-            homeFragmentViewModel.getAllCategories()
 
-        })
         homeFragmentViewModel.fetchedlist.observe(viewLifecycleOwner) {
             for (category in it) {
                 Log.i(
@@ -49,7 +60,7 @@ class HomeFragment : Fragment() {
                     "onCreateView: ${category.CategoryName} - ${category.description} - ${category.id}"
                 )
             }
-        }
+        }*/
         binding.buttonFetch.setOnClickListener()
          {
             homeFragmentViewModel.clickCheck()
