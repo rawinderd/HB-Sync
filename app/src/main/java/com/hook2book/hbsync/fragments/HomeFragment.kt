@@ -12,6 +12,7 @@ import com.hook2book.hbsync.R
 import com.hook2book.hbsync.RoomDatabase.CategoriesMainForRoom
 import com.hook2book.hbsync.ViewModels.HomeFragmentViewModel
 import com.hook2book.hbsync.databinding.FragmentHomeBinding
+import com.hook2book.roomdb1.AppDatabase
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.lang.reflect.InvocationTargetException
@@ -61,71 +62,17 @@ class HomeFragment : Fragment() {
                 )
             }
         }*/
+        var db = AppDatabase.getDatabase(requireContext())
+        var dao = db.categoryDao()
         binding.buttonFetch.setOnClickListener()
          {
-            homeFragmentViewModel.clickCheck()
+             GlobalScope.launch {
+                 Log.i("TAG", "onCreate: " + dao.getAllCategories())
+             }
         }
+
         return view
     }
 
-    private fun getList(): List<CategoriesMainForRoom> {
-        lateinit var list: MutableList<CategoriesMainForRoom>
-        list.add(
-            CategoriesMainForRoom(
-                count = 0,
-                description = "Sample Description",
-                id = 1,
-                CategoryName = "3455 Category",
-                CategoryParent = 0
-            )
-        )
-        list.add(
-            CategoriesMainForRoom(
-                count = 0,
-                description = "Sample Description",
-                id = 1,
-                CategoryName = "4554 Category",
-                CategoryParent = 0
-            )
-        )
-        list.add(
-            CategoriesMainForRoom(
-                count = 0,
-                description = "Sample Description",
-                id = 1,
-                CategoryName = "6767 Category",
-                CategoryParent = 0
-            )
-        )
-        list.add(
-            CategoriesMainForRoom(
-                count = 0,
-                description = "Sample Description",
-                id = 1,
-                CategoryName = "8989 Category",
-                CategoryParent = 0
-            )
-        )
 
-        list.add(
-            CategoriesMainForRoom(
-                count = 0,
-                description = "Sample Description",
-                id = 1,
-                CategoryName = "323 Category",
-                CategoryParent = 0
-            )
-        )
-
-        list.add(
-            CategoriesMainForRoom(
-                count = 0,
-                description = "Sample Description",
-                id = 1,
-                CategoryName = "454554 Category",
-                CategoryParent = 0
-            )
-        )
-        return list
-    }
 }

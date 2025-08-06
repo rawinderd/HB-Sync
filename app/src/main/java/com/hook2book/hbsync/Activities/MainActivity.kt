@@ -1,6 +1,5 @@
 package com.hook2book.hbsync.Activities
 
-import CommonDatabase
 import android.content.Intent
 import android.content.IntentSender.SendIntentException
 import android.content.pm.PackageInfo
@@ -45,6 +44,8 @@ import com.hook2book.hbsync.fragments.HomeFragment
 import com.hook2book.hbsync.fragments.OrderFragment
 import com.hook2book.hbsync.fragments.ProductsFragment
 import com.hook2book.hbsync.fragments.UserFragment
+import com.hook2book.roomdb1.AppDatabase
+import com.hook2book.roomdb1.CategoryEntity
 import dagger.hilt.android.AndroidEntryPoint
 import io.paperdb.Paper
 import kotlinx.coroutines.GlobalScope
@@ -116,7 +117,10 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                             )
                         )
                     }
-                    updateCategoriesInRoom(categoryList)
+
+
+                     updateCategoriesInRoom(categoryList)
+
                     // //Preferences.saveCategories(this, it.data)
                 }
                 ApiStatus.ERROR -> {
@@ -200,6 +204,14 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             navigationView.requestLayout()
             navigationView.setNavigationItemSelectedListener(this)
         }
+
+
+        var cateData: List<CategoryEntity> = listOf(
+            CategoryEntity(0, "Category 1", 1, "Parent 1", "one"),
+            CategoryEntity(0, "Category 2", 2, "Parent 1", "one"),
+            CategoryEntity(0, "Category 3", 3, "Parent 2", "one")
+        )
+
 
 
     }
@@ -314,10 +326,10 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         }
     }
 
-    private fun updateCategoriesInRoom(categoriesMains: MutableList<CategoriesMainForRoom>) {
+    /* private fun updateCategoriesInRoom(categoriesMains: MutableList<CategoriesMainForRoom>) {
         if (categoriesMains.isNotEmpty()) {
            // Log.d("Categories", "Updating Categories in Room")
-            GlobalScope.launch {
+          //  GlobalScope.launch {
                 for (i in 0..categoriesMains.size - 1) {
                     Log.i(
                         "TAG",
@@ -326,6 +338,26 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                     CommonDatabase.getDatabase(applicationContext).categoriesDao()
                         .insertAll(categoriesMains)
                 }
+//}
+        } else {
+            Log.d("Categories", "No Categories to Update in Room")
+        }
+    }*/
+    private fun updateCategoriesInRoom(categoriesMains: MutableList<CategoriesMainForRoom>) {
+        if (categoriesMains.isNotEmpty()) {
+            Log.d("Categories", "Updating Categories in Room")
+            GlobalScope.launch {
+                val db = AppDatabase.getDatabase(applicationContext)
+                val dao = db.categoryDao()
+                dao.insertAll(categoriesMains.map {
+                    CategoryEntity(
+                        it.count,
+                        it.description,
+                        it.id,
+                        it.CategoryName,
+                        it.CategoryParent.toString()
+                    )
+                })
             }
         } else {
             Log.d("Categories", "No Categories to Update in Room")

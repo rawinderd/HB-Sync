@@ -3,7 +3,6 @@ plugins {
     alias(libs.plugins.kotlin.android)
     id("kotlin-kapt")
 }
-
 android {
     namespace = "com.hook2book.hbsync"
     compileSdk = 35
@@ -63,11 +62,11 @@ dependencies {
     implementation (libs.converter.gson)
     implementation(libs.app.update)
     implementation(libs.app.update.ktx)
-    /*implementation (libs.androidx.room.runtime)
-   kapt ("androidx.room:room-compiler:2.7.2")
-// Optional - Kotlin coroutines support for Room
-    implementation ("androidx.room:room-ktx:2.7.2")*/
- //  annotationProcessor ("androidx.room:room-compiler:2.7.2")
-    implementation ("androidx.room:room-runtime:2.5.2")
-    kapt ("androidx.room:room-compiler:2.5.2")
+    // Room
+    implementation (libs.androidx.room.runtime)
+    kapt ("androidx.room:room-compiler:2.7.2")
+
+    // Optional - Kotlin coroutines support for Room
+    implementation ("androidx.room:room-ktx:2.7.2")
+
 }
