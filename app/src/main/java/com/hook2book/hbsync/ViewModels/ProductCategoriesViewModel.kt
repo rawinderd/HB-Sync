@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.hook2book.hbsync.EnumClasses.ApiResult
 import com.hook2book.hbsync.Model.Categories.CategoriesMain
 import com.hook2book.hbsync.Repository.ProductCategoriesRepo
+import com.hook2book.hbsync.RoomDatabase.CategoryEntity
 import kotlinx.coroutines.launch
 
 class ProductCategoriesViewModel(application: Application) : AndroidViewModel(application) {
@@ -22,4 +23,14 @@ class ProductCategoriesViewModel(application: Application) : AndroidViewModel(ap
     fun getCategoriesList(): LiveData<ApiResult<List<CategoriesMain>>> {
         return productCategoriesRepo.apiResult
     }
+
+    suspend fun getLocalCategories(){
+    viewModelScope.launch {}
+            productCategoriesRepo.getLocalCategories()
+        }
+    fun fetchLocalCategories(): LiveData<List<CategoryEntity>> {
+        return productCategoriesRepo.localCategoriesResult
+    }
 }
+
+

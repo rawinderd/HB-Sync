@@ -1,4 +1,5 @@
-package com.hook2book.roomdb1
+package  com.hook2book.hbsync.RoomDatabase
+
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -9,5 +10,5 @@ data class CategoryEntity(
     val description: String,
     @PrimaryKey val id: Int,
     val CategoryName: String,
-    val CategoryParent: String
+    val CategoryParent: Int
 )

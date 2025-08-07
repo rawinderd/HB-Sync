@@ -34,6 +34,7 @@ import com.hook2book.hbsync.EnumClasses.ApiStatus
 import com.hook2book.hbsync.Model.Categories.CategoriesMain
 import com.hook2book.hbsync.R
 import com.hook2book.hbsync.RoomDatabase.CategoriesMainForRoom
+import com.hook2book.hbsync.RoomDatabase.CategoryEntity
 import com.hook2book.hbsync.UtilityClass.BaseActivity
 import com.hook2book.hbsync.UtilityClass.Preferences
 import com.hook2book.hbsync.UtilityClass.Prevalent
@@ -45,7 +46,6 @@ import com.hook2book.hbsync.fragments.OrderFragment
 import com.hook2book.hbsync.fragments.ProductsFragment
 import com.hook2book.hbsync.fragments.UserFragment
 import com.hook2book.roomdb1.AppDatabase
-import com.hook2book.roomdb1.CategoryEntity
 import dagger.hilt.android.AndroidEntryPoint
 import io.paperdb.Paper
 import kotlinx.coroutines.GlobalScope
@@ -207,13 +207,10 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
 
         var cateData: List<CategoryEntity> = listOf(
-            CategoryEntity(0, "Category 1", 1, "Parent 1", "one"),
-            CategoryEntity(0, "Category 2", 2, "Parent 1", "one"),
-            CategoryEntity(0, "Category 3", 3, "Parent 2", "one")
+            CategoryEntity(0, "Category 1", 1, "Parent 1", 1234),
+            CategoryEntity(0, "Category 2", 2, "Parent 1", 4563),
+            CategoryEntity(0, "Category 3", 3, "Parent 2", 8522)
         )
-
-
-
     }
 
     private var doubleBackToExitPressedOnce = false
@@ -326,23 +323,6 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         }
     }
 
-    /* private fun updateCategoriesInRoom(categoriesMains: MutableList<CategoriesMainForRoom>) {
-        if (categoriesMains.isNotEmpty()) {
-           // Log.d("Categories", "Updating Categories in Room")
-          //  GlobalScope.launch {
-                for (i in 0..categoriesMains.size - 1) {
-                    Log.i(
-                        "TAG",
-                        "updateCategoriesInRoom: $i " + categoriesMains.get(i).CategoryName
-                    )
-                    CommonDatabase.getDatabase(applicationContext).categoriesDao()
-                        .insertAll(categoriesMains)
-                }
-//}
-        } else {
-            Log.d("Categories", "No Categories to Update in Room")
-        }
-    }*/
     private fun updateCategoriesInRoom(categoriesMains: MutableList<CategoriesMainForRoom>) {
         if (categoriesMains.isNotEmpty()) {
             Log.d("Categories", "Updating Categories in Room")
@@ -355,7 +335,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                         it.description,
                         it.id,
                         it.CategoryName,
-                        it.CategoryParent.toString()
+                        it.CategoryParent
                     )
                 })
             }

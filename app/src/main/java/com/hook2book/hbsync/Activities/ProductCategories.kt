@@ -55,7 +55,7 @@ class ProductCategories : BaseActivity(), ProductTagsAdapter.ItemClickListener {
             if (it.data?.size!! > 0) {
                 dialog.dismiss()
                 for (i in 0..it.data.size - 1) {
-                    if (it.data.get(i).parent != 1751) {
+                    if (it.data.get(i).parent!= 1751) {
                         if (it.data.get(i).parent == 0) {
                             parentCategories.add(
                                 CategoriesForListing(

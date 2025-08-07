@@ -1,27 +1,31 @@
 package com.hook2book.hbsync.Repository
 
 import android.app.Application
-import android.util.Base64
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
 import com.hook2book.hbsync.EnumClasses.ApiResult
 import com.hook2book.hbsync.Interface.RetroService
 import com.hook2book.hbsync.Model.Categories.CategoriesMain
-
+import com.hook2book.hbsync.RoomDatabase.CategoryEntity
 import com.hook2book.hbsync.UtilityClass.Preferences
-
-import java.nio.charset.StandardCharsets
+import com.hook2book.roomdb1.AppDatabase
 
 class ProductCategoriesRepo(application: Application) {
     var apiResult: MutableLiveData<ApiResult<List<CategoriesMain>>> = MutableLiveData()
+    var localCategoriesResult: MutableLiveData<List<CategoryEntity>> = MutableLiveData()
     var application: Application = application
+    var db = AppDatabase.getDatabase(application)
+    var dao = db.categoryDao()
 
 
     suspend fun fetchCategories() {
         val params = HashMap<String, String>()
-        params.put("per_page", "100")
-        val response = RetroService.retroInstance.fetchCategories(Preferences.loadCombinedKey(application), params)
+        //params.put("per_page", "100")
+        val response = RetroService.retroInstance.fetchCategories(
+            Preferences.loadCombinedKey(application),
+            params
+        )
         if (response.isSuccessful) {
             if (response.isSuccessful) {
                 Log.e("Success Rawinder1901", Gson().toJson(response.body()))
@@ -50,5 +54,9 @@ class ProductCategoriesRepo(application: Application) {
                 )
             )
         }
+    }
+
+    suspend fun getLocalCategories() {
+        localCategoriesResult.postValue(dao.getAllCategories())
     }
 }

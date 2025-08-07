@@ -581,7 +581,7 @@ class AddProduct : BaseActivity() {
             launcher.launch(intent)
         })
         binding.categoriesBlock.setOnClickListener(View.OnClickListener {
-            val intent = Intent(this, ProductCategories::class.java)
+            val intent = Intent(this, ProductCategories2::class.java)
             launcher.launch(intent)
         })
         binding.productRemarkInputInner.addTextChangedListener(object : TextWatcher {

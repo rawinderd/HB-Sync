@@ -1,6 +1,8 @@
 package com.hook2book.roomdb1
 
+import androidx.lifecycle.MutableLiveData
 import androidx.room.*
+import com.hook2book.hbsync.RoomDatabase.CategoryEntity
 
 @Dao
 interface CategoryDao {
