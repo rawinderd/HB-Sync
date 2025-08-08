@@ -22,7 +22,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import com.hook2book.hbsync.EnumClasses.ApiStatus
-import com.hook2book.hbsync.Model.NewTag.RemovedCategoryChipMain
+import com.hook2book.hbsync.Model.Categories.RemovedCategoryChipMain
+
 
 import com.hook2book.hbsync.Model.NewTag.tagArray
 import com.hook2book.hbsync.Model.ProductTags.RemovedTagMain
@@ -450,17 +451,17 @@ class AddProduct : BaseActivity() {
                                 args!!.getSerializable("categories") as ArrayList<RemovedCategoryChipMain>?
                             if (`object` != null) {
                                 var categorylist: String =
-                                    `object`.get(0).categoriesForListing.categoryDetail.name.toString()
+                                    `object`.get(0).categoriesForListing.categoryDetail.categoryName
                                 // var categoryIds: String = `object`.get(0).categoriesForListing.categoryDetail.id.toString()
                                 for (i in 1..`object`.size - 1) {
-                                    categorylist += ", " + `object`.get(i).categoriesForListing.categoryDetail.name.toString()
+                                    categorylist += ", " + `object`.get(i).categoriesForListing.categoryDetail.categoryName
                                     //categoryIds+=", "+`object`.get(i).categoriesForListing.categoryDetail.id.toString()
                                 }
 
                                 binding.listOfCategories.visibility = View.VISIBLE
                                 binding.listOfCategories.text = categorylist
                                 cate = `object`
-                                searchTagToAddCategory(`object`.get(0).categoriesForListing.categoryDetail.name.toString())
+                                searchTagToAddCategory(`object`.get(0).categoriesForListing.categoryDetail.categoryName)
 
                             }
                         }
@@ -657,7 +658,7 @@ class AddProduct : BaseActivity() {
             when (it.status) {
                 ApiStatus.SUCCESS -> {
                     if (it.data?.size!! > 0) {
-                        if (cate.get(0).categoriesForListing.categoryDetail.name.equals(
+                        if (cate.get(0).categoriesForListing.categoryDetail.categoryName.equals(
                                 it.data.get(
                                     0
                                 ).name
@@ -892,7 +893,7 @@ class AddProduct : BaseActivity() {
             decString =
                 productDataLocal.data.book_name + " by " + productDataLocal.data.writer_name + " " + cate.get(
                     0
-                ).categoriesForListing.categoryDetail.name + " book in " + productDataLocal.data.language
+                ).categoriesForListing.categoryDetail.categoryName + " book in " + productDataLocal.data.language
         } else {
             decString =
                 productDataLocal.data.book_name + " by " + productDataLocal.data.writer_name + " " + productDataLocal.data.category?.get(
@@ -1026,7 +1027,7 @@ class AddProduct : BaseActivity() {
             for (i in 0..cate.size - 1) {
                 val categories = JsonObject()
                 categories.addProperty(
-                    "name", cate.get(i).categoriesForListing.categoryDetail.name
+                    "name", cate.get(i).categoriesForListing.categoryDetail.categoryName
                 )
                 categories.addProperty(
                     "wc_category_id", cate.get(i).categoriesForListing.categoryDetail.id

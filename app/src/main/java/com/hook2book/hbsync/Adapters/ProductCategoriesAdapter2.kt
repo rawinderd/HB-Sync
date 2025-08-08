@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.hook2book.hbsync.Activities.ProductCategories2
-import com.hook2book.hbsync.Model.NewTag.CategoriesForListing
 import com.hook2book.hbsync.Model.NewTag.CategoriesForListing2
 import com.hook2book.hbsync.R
 
@@ -46,7 +45,7 @@ class ProductCategoriesAdapter2(private val itemClickListener: ProductCategories
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val ItemsViewModel = categoryList[position]
-        var text = ItemsViewModel.categoryDetail.CategoryName
+        var text = ItemsViewModel.categoryDetail.categoryName
         when (holder) {
             is ViewHolderCategoryItem -> holder.category_name.text = text
 

@@ -9,6 +9,6 @@ data class CategoryEntity(
     val count: Int,
     val description: String,
     @PrimaryKey val id: Int,
-    val CategoryName: String,
-    val CategoryParent: Int
-)
+    val categoryName: String,
+    val categoryParent: Int
+) : java.io.Serializable

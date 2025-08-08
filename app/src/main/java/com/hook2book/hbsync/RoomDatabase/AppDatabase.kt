@@ -5,7 +5,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.hook2book.hbsync.RoomDatabase.CategoryEntity
 
-@Database(entities = [CategoryEntity::class], version = 2, exportSchema = false)
+@Database(entities = [CategoryEntity::class], version = 3, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun categoryDao(): CategoryDao

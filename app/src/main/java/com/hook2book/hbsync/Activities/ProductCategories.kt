@@ -16,8 +16,8 @@ import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.hook2book.hbsync.Adapters.ProductCategoriesAdapter
 import com.hook2book.hbsync.Adapters.ProductTagsAdapter
+import com.hook2book.hbsync.Model.Categories.RemovedCategoryChipMain
 import com.hook2book.hbsync.Model.NewTag.CategoriesForListing
-import com.hook2book.hbsync.Model.NewTag.RemovedCategoryChipMain
 import com.hook2book.hbsync.R
 import com.hook2book.hbsync.UtilityClass.BaseActivity
 import com.hook2book.hbsync.ViewModels.ProductCategoriesViewModel
@@ -152,7 +152,7 @@ class ProductCategories : BaseActivity(), ProductTagsAdapter.ItemClickListener {
             text = categoriesForListing.categoryDetail.name
             this.setOnCloseIconClickListener {
                 chipGroup.removeView(this)
-                addRemovedChipToMainCategoryList(id)
+          //      addRemovedChipToMainCategoryList(id)
             }
             isClickable = true
             isCheckable = true
@@ -160,11 +160,11 @@ class ProductCategories : BaseActivity(), ProductTagsAdapter.ItemClickListener {
             isCheckedIconVisible = false
             isFocusable = true
             addView(this)
-            addToRemovedCategoryList(id, categoriesForListing, position)
+           // addToRemovedCategoryList(id, categoriesForListing, position)
         }
     }
 
-    private fun addToRemovedCategoryList(
+    /*private fun addToRemovedCategoryList(
         id: Int, categoriesForListing: CategoriesForListing, tagPosition: Int
     ) {
         removedCategorylist.add(RemovedCategoryChipMain(id, categoriesForListing, tagPosition))
@@ -179,5 +179,5 @@ class ProductCategories : BaseActivity(), ProductTagsAdapter.ItemClickListener {
                 )
             }
         }
-    }
+    }*/
 }

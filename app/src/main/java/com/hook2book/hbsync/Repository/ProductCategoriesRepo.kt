@@ -21,7 +21,7 @@ class ProductCategoriesRepo(application: Application) {
 
     suspend fun fetchCategories() {
         val params = HashMap<String, String>()
-        //params.put("per_page", "100")
+        params.put("per_page", "100")
         val response = RetroService.retroInstance.fetchCategories(
             Preferences.loadCombinedKey(application),
             params
